@@ -6,14 +6,44 @@ public class Space {
 	private Space left;
 	private Space up;
 	private Space down;
+	private int space;
+	private String special;
 	
-	public Space(String info, Space right, Space left, Space up, Space down) {
+	
+	public Space(String info, Space right, Space left, Space up, Space down, int space, String special) {
 		this.info = info;
 		this.right = right;
 		this.left = left;
 		this.up = up;
 		this.down = down;
+		this.space=space;
+		this.special=special;
 	}
+
+	
+	public String getSpecial() {
+		return special;
+	}
+
+
+
+	public void setSpecial(String special) {
+		this.special = special;
+	}
+
+
+
+	public int getSpace() {
+		return space;
+	}
+
+
+
+	public void setSpace(int space) {
+		this.space = space;
+	}
+
+
 
 	public String getInfo() {
 		return info;
