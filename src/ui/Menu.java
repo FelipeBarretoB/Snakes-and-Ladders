@@ -70,7 +70,7 @@ public class Menu {
 		case 1:
 
 			bw.write("caso 1 \n \n");
-			mB.createBoard(5, 5, 0, 0, null);
+			mB.createBoard(3, 3, 0, 0, null);
 			bw.flush();
 			break;
 		case 2:
