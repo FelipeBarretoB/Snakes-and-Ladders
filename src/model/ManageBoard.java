@@ -4,9 +4,13 @@ import java.util.Random;
 
 public class ManageBoard {
 
-	public ManageBoard() {}
-	Space end;
-	String print;
+	private Space end;
+	private String print;
+	private int ascii;
+	public ManageBoard() {
+		ascii=65;	
+	}
+
 
 	public int rollDie() {
 		Random random = new Random();
@@ -90,6 +94,28 @@ public class ManageBoard {
 	}
 
 
+	public void createSnakes(int dim, int m, int n, Space next, int c, boolean side, int s) {
+		Random random = new Random();
+		int spaceForSnake=random.nextInt(m*n - 1 + n) + 1;
+		if(getByDim(spaceForSnake, dim, m, n, next, c, side).getSpecial().equals(" ")) {
+			getByDim(spaceForSnake, dim, m, n, next, c, side).setSpecial(new Character((char)ascii).toString());
+			getByDim(getRandomDim(dim, m, n), dim, m, spaceForSnake, next, c, side).setSpecial(new Character((char)ascii).toString());
+			ascii++;
+		}else {
+			createSnakes(dim, m, n, next, c, side, spaceForSnake);
+		}
+		
+	}
+
+	public int getRandomDim( int dim, int m, int n) {
+		Random random = new Random();
+		int x=random.nextInt(m*n - 1 + n) + 1;
+		if(x<dim-m) {
+			return x;
+		}else {
+			return getRandomDim(dim, m, n);
+		}
+	}
 
 	public String printString(int dim, String print,int m, int n, int c, int x,boolean side) {
 		if(x!=0) {
@@ -106,7 +132,7 @@ public class ManageBoard {
 					//System.out.print(dim+" ");
 					return printString(dim, print, m, n, c,x,side);
 				}
-				 
+
 			}else {
 				if(side) {
 					dim--;
@@ -133,13 +159,13 @@ public class ManageBoard {
 					dim--;
 					c--;
 					next.getRight().setLeft(next);
-										connectNeighbours( dim,  m,  next.getRight(), c, side);
+					connectNeighbours( dim,  m,  next.getRight(), c, side);
 				}
 				if(next.getLeft()!=null && side){
 					dim--;
 					c--;
 					next.getLeft().setRight(next);
-					
+
 					connectNeighbours( dim,  m,  next.getLeft(), c, side);
 				}
 			}else {
@@ -148,7 +174,7 @@ public class ManageBoard {
 				if(next.getDown()!=null){
 					dim--;
 					next.getDown().setUp(next);
-				
+
 					connectNeighbours( dim,   m,  next.getDown(), c, side);
 				}
 			}
