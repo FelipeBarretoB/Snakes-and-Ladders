@@ -49,7 +49,7 @@ public class Menu {
 		bw.write(
 				"Menú principal, seleccione una opción\n" +
 						"(1) Jugar \n" +
-						"(2) Ver tablero \n"+
+						"(2) Ver tablero de puntajes\n"+
 						"(0) Para salir"
 				);
 		bw.newLine();
@@ -68,10 +68,13 @@ public class Menu {
 			bw.flush();
 			break;
 		case 1:
-
-			bw.write("caso 1 \n \n");
-			mB.createBoard(3, 3, 0, 0, null);
+			bw.write("Entre las variables del juego");
+			bw.newLine();
 			bw.flush();
+			createBoard();
+			bw.newLine();
+			bw.flush();
+			play();
 			break;
 		case 2:
 			bw.write("caso 2 \n \n");
@@ -81,6 +84,40 @@ public class Menu {
 			bw.write("Seleccione una opcion valida \n \n");
 			bw.flush();
 
+		}
+	}
+	
+	public void createBoard() throws IOException {
+		String input=br.readLine();
+		String[] split =input.split(" ");
+		mB.createBoard(Integer.parseInt(split[0]),Integer.parseInt(split[1]) , Integer.parseInt(split[2]), Integer.parseInt(split[3]), split[4]);
+		bw.write(mB.printString());
+	}
+	
+	public void play() throws IOException {
+		String input = br.readLine();
+		if(input.equals("menu")) {
+			
+		}else if(input.equals("num")) {
+			bw.write(mB.printString());
+			bw.newLine();
+			bw.flush();
+			play();
+		}else if(input.equals("")) {
+			bw.write("salto de linea pog");
+			bw.newLine();
+			bw.flush();
+			play();
+		}else if(input.equals("help")) {
+			bw.write("Entre un salto de linea lanzar el dado \nEscriba: menu para volver el menu y para el juego \nEscriba: num, para mostrar el tablero completo \nEscriba: simul, para simular el juego");
+			bw.newLine();
+			bw.flush();
+			play();
+		}else if(input.equals("simul")){
+			bw.write("simul pog");
+			bw.newLine();
+			bw.flush();
+			play();
 		}
 	}
 }
