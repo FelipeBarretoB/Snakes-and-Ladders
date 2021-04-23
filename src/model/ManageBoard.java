@@ -1,6 +1,5 @@
 package model;
 
-import java.text.BreakIterator;
 import java.util.Random;
 
 public class ManageBoard {
@@ -138,8 +137,10 @@ public class ManageBoard {
 		setBoard( dim,  m,  n,end, m-1, false);
 		createSnakes(s);
 		createLadders(e);
+		//System.out.println(end.getRight().getRight().getDown().getSpace());
+		//print(dim+1, m, n, end, m-1, false);
 		connectNeighbours(dim+1, m, end, m-1, false);
-		connectUpAndDown(dim+1, m,n, end, m, m, n, false);
+		connectUpAndDown(dim+1, n,m, end, m, m, n, false);
 
 	}
 
@@ -184,6 +185,7 @@ public class ManageBoard {
 	/*
 	private void print(int dim, int m, int n, Space next, int c, boolean side) {
 		if(dim!=0) {
+			System.out.println(c);
 			if(c!=0) {
 				if(next.getRight()!=null && !side){
 					dim--;
@@ -194,7 +196,7 @@ public class ManageBoard {
 				if(next.getLeft()!=null && side){
 					dim--;
 					c--;
-					System.out.println(next.getLeft().getSpace());
+					System.out.println(next.getSpace()+" a "+next.getLeft().getSpace());
 					print=next.getLeft().getSpace()+" "+print;
 					print( dim,  m,  n,  next.getLeft(), c, side);
 				}
@@ -203,7 +205,7 @@ public class ManageBoard {
 				c=m-1;
 				if(next.getDown()!=null){
 					dim--;
-					System.out.println(next.getDown().getSpace());
+					System.out.println(next.getSpace()+" a "+next.getDown().getSpace());
 					print+="\n"+next.getDown().getSpace();
 					print( dim,  m,  n,  next.getDown(), c, side);
 				}
@@ -211,7 +213,7 @@ public class ManageBoard {
 
 		}
 	}
-	 */
+	*/
 	public void createLadders(int numOfLadders) {
 		if(numOfLadders!=0) {
 			createLadders(m*n,  m,  n,  end,  true, 0);
@@ -222,15 +224,15 @@ public class ManageBoard {
 	private void createLadders(int dim, int m, int n, Space next,  boolean side, int spaceForLadder) {
 		Random random = new Random();
 		spaceForLadder=random.nextInt(m*n - 1 + n) + 1;
-		if(spaceForLadder>m*(n-1) || spaceForLadder>dim-m || spaceForLadder==1) {
-			createLadders( dim,  m,  n,  next,    side,  spaceForLadder);
+		if(spaceForLadder>m*(n-1) || spaceForLadder>(dim-m) || spaceForLadder==1) {
+			createLadders(dim,  m,  n,  next,    side,  spaceForLadder);
 		}else {
 			if(getByDim(spaceForLadder, dim, m, n, next, m-1, false).getSpecial()==null) {
 				getByDim(spaceForLadder, dim, m, n, next, m-1, false).setSpecial(""+numOfLadders);
 				getByDim(getRandomDim(dim, m, n, side , spaceForLadder), dim, m, spaceForLadder, next, m-1, false).setSpecial(""+numOfLadders);
 				numOfLadders++;
 			}else {
-				createLadders(spaceForLadder, m, n, next, side, spaceForLadder);
+				createLadders(dim, m, n, next, side, spaceForLadder);
 			}
 		}
 	}
@@ -268,13 +270,9 @@ public class ManageBoard {
 				return getRandomDim(dim, m, n, snakeOrLadder, space);
 			}
 		}else {
-			int f=findSpaceFoLadder( space,  m*1,  m,  1);
 			if( x<=dim && x>findSpaceFoLadder( space,  m*1,  m,  1)&& getByDim(x, m*n, m, n, end, m-1, false).getSpecial()==null) {
 				return x;
 			}else {
-				System.out.println("s"+space);
-				System.out.println(x);
-				System.out.println(f);
 				return getRandomDim(dim, m, n, snakeOrLadder,space);
 			}
 		}
@@ -395,7 +393,7 @@ public class ManageBoard {
 
 		}
 	}
-
+	
 	private Space getByDim(int find,int dim, int m, int n, Space next, int c, boolean side) {
 		if(next.getSpace()!=find){
 			if(dim!=0) {
