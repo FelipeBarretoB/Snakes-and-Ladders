@@ -11,15 +11,14 @@ public class Players {
 	}
 	
 	public Players(int amount, String names) {
-		
 		first = new Player ((char) names.charAt(amount-1));
 		Player aux = first;
-		addPlayers(amount-2, aux, names);
+		addPlayers(amount-1, aux, names);
 	}
 	
 	public void addPlayers(int amount, Player aux, String names) {
 		if(amount > 0) {
-			aux.setNext(new Player((char) (names.charAt(amount))));
+			aux.setNext(new Player((char) (names.charAt(amount-1))));
 			amount--;
 			addPlayers(amount,aux);
 		}else {

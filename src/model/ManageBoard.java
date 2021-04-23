@@ -137,7 +137,12 @@ public class ManageBoard {
 		this.m=m;
 		this.s=s;
 		this.e=e;
-		this.players = new Players(players.length(), players);
+		if((int)players.charAt(0) >= 48 && (int)players.charAt(0) >= 58){
+			this.players = new Players(Integer.parseInt(players));
+		}else {
+			this.players = new Players(players.length(), players);
+		}
+		
 		print="";
 		ascii=65;
 		numOfLadders=1;
