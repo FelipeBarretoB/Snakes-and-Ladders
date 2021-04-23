@@ -23,6 +23,8 @@ public class ManageBoard {
 	private int e;
 	//The players in the game
 	private String k;
+	//players
+	private Players players;
 
 	public Space getEnd() {
 		return end;
@@ -116,19 +118,26 @@ public class ManageBoard {
 	public void setNumOfLadders(int numOfLadders) {
 		this.numOfLadders = numOfLadders;
 	}
+	
+	public Players getPlayers() {
+		return players;
+	}
 
+	public void setPlayers(Players players) {
+		this.players = players;
+	}
 
 	public int rollDie() {
 		Random random = new Random();
 		return  random.nextInt(6 - 1 + 1) + 1;
 	}
 
-	public void createBoard(int n, int m, int s, int e, String k) {
+	public void createBoard(int n, int m, int s, int e,String players) {
 		this.n=n;
 		this.m=m;
 		this.s=s;
 		this.e=e;
-		this.k=k;
+		this.players = new Players(players.length(), players);
 		print="";
 		ascii=65;
 		numOfLadders=1;
@@ -141,6 +150,8 @@ public class ManageBoard {
 		connectNeighbours(dim+1, m, end, m-1, false);
 		connectUpAndDown(dim+1, m,n, end, m, m, n, false);
 
+		
+		
 	}
 
 	public String printString() {
