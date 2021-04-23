@@ -1,5 +1,6 @@
 package model;
 
+import java.text.BreakIterator;
 import java.util.Random;
 
 public class ManageBoard {
@@ -10,6 +11,8 @@ public class ManageBoard {
 	private String print;
 	//The letter for the snakes
 	private int ascii;
+	//The number of ladders
+	private int numOfLadders;
 	//The lines of the board
 	private int n;
 	//The columns of the board
@@ -105,6 +108,15 @@ public class ManageBoard {
 		ascii=65;	
 	}
 
+	public int getNumOfLadders() {
+		return numOfLadders;
+	}
+
+
+	public void setNumOfLadders(int numOfLadders) {
+		this.numOfLadders = numOfLadders;
+	}
+
 
 	public int rollDie() {
 		Random random = new Random();
@@ -119,11 +131,13 @@ public class ManageBoard {
 		this.k=k;
 		print="";
 		ascii=65;
+		numOfLadders=1;
 		int dim=n*m;
 		end = new Space( "f",  null,  null,  null,  null,  dim,  null);
 		dim--;
 		setBoard( dim,  m,  n,end, m-1, false);
 		createSnakes(s);
+		createLadders(e);
 		connectNeighbours(dim+1, m, end, m-1, false);
 		connectUpAndDown(dim+1, m,n, end, m, m, n, false);
 
@@ -198,39 +212,89 @@ public class ManageBoard {
 		}
 	}
 	 */
-
-	public void createSnakes(int numOfSnakes) {
-		if(numOfSnakes!=0) {
-			createSnakes(m*n, m, n, end, m-1, false, 0);
-			createSnakes(numOfSnakes-1);
+	public void createLadders(int numOfLadders) {
+		if(numOfLadders!=0) {
+			createLadders(m*n,  m,  n,  end,  true, 0);
+			createLadders(numOfLadders-1);
 		}
 	}
 
-	private void createSnakes(int dim, int m, int n, Space next, int c, boolean side, int spaceForSnake) {
+	private void createLadders(int dim, int m, int n, Space next,  boolean side, int spaceForLadder) {
 		Random random = new Random();
-		spaceForSnake=random.nextInt(m*n - 1 + n) + 1;
-		if(spaceForSnake>m*n && spaceForSnake>m) {
-			createSnakes(dim, m, n, next, c, side, spaceForSnake);
+		spaceForLadder=random.nextInt(m*n - 1 + n) + 1;
+		if(spaceForLadder>m*(n-1) || spaceForLadder>dim-m || spaceForLadder==1) {
+			createLadders( dim,  m,  n,  next,    side,  spaceForLadder);
 		}else {
-			System.out.println(spaceForSnake);
-			if(getByDim(spaceForSnake, dim, m, n, next, c, side).getSpecial()==null && spaceForSnake!= m*n) {
-				getByDim(spaceForSnake, dim, m, n, next, c, side).setSpecial(new Character((char)ascii).toString());
-				getByDim(getRandomDim(dim, m, n, false), dim, m, spaceForSnake, next, c, side).setSpecial(new Character((char)ascii).toString());
-				ascii++;
+			if(getByDim(spaceForLadder, dim, m, n, next, m-1, false).getSpecial()==null) {
+				getByDim(spaceForLadder, dim, m, n, next, m-1, false).setSpecial(""+numOfLadders);
+				getByDim(getRandomDim(dim, m, n, side , spaceForLadder), dim, m, spaceForLadder, next, m-1, false).setSpecial(""+numOfLadders);
+				numOfLadders++;
 			}else {
-				createSnakes(spaceForSnake, m, n, next, c, side, spaceForSnake);
+				createLadders(spaceForLadder, m, n, next, side, spaceForLadder);
 			}
 		}
 	}
 
-	public int getRandomDim( int dim, int m, int n, boolean snakeOrLadder) {
+	public void createSnakes(int numOfSnakes) {
+		if(numOfSnakes!=0) {
+			createSnakes(m*n, m, n, end, false, 0);
+			createSnakes(numOfSnakes-1);
+		}
+	}
+
+	private void createSnakes(int dim, int m, int n, Space next, boolean side, int spaceForSnake) {
+		Random random = new Random();
+		spaceForSnake=random.nextInt(m*n - 1 + n) + 1;
+		if(spaceForSnake>=m*n || spaceForSnake<m+1 || spaceForSnake<0) {
+			createSnakes(dim, m, n, next,  side, spaceForSnake);
+		}else {
+			if(getByDim(spaceForSnake, dim, m, n, next, m-1, side).getSpecial()==null) {
+				getByDim(spaceForSnake, dim, m, n, next, m-1, side).setSpecial(new Character((char)ascii).toString());
+				getByDim(getRandomDim(dim, m, n, false, spaceForSnake), dim, m, spaceForSnake, next, m-1, side).setSpecial(new Character((char)ascii).toString());
+				ascii++;
+			}else {
+				createSnakes(spaceForSnake, m, n, next, side, spaceForSnake);
+			}
+		}
+	}
+
+	private int getRandomDim( int dim, int m, int n, boolean snakeOrLadder, int space) {
 		Random random = new Random();
 		int x=random.nextInt(m*n - 1 + n) + 1;
-		System.out.println("add"+x +">"+(dim-m));
-		if(x<dim-m && x>0 && getByDim(x, m*n, m, n, end, m-1, snakeOrLadder).getSpecial()==null) {
-			return x;
+		if(!snakeOrLadder) {
+			if( x>0 && x<findSpaceFoSnake(space, m*n, m, n) && getByDim(x, m*n, m, n, end, m-1, false).getSpecial()==null) {
+				return x;
+			}else {
+				return getRandomDim(dim, m, n, snakeOrLadder, space);
+			}
 		}else {
-			return getRandomDim(dim, m, n, snakeOrLadder);
+			int f=findSpaceFoLadder( space,  m*1,  m,  1);
+			if( x<=dim && x>findSpaceFoLadder( space,  m*1,  m,  1)&& getByDim(x, m*n, m, n, end, m-1, false).getSpecial()==null) {
+				return x;
+			}else {
+				System.out.println("s"+space);
+				System.out.println(x);
+				System.out.println(f);
+				return getRandomDim(dim, m, n, snakeOrLadder,space);
+			}
+		}
+	}
+	
+	private int findSpaceFoSnake(int space, int dim, int m, int n) {
+		if(space<=m*n && space>dim-m && dim!=0) {
+			return dim-m;
+		}else {
+			n--;
+			return findSpaceFoSnake(space, m*n, m, n);
+		}
+	}
+	
+	private int findSpaceFoLadder(int space, int dim, int m, int n) {
+		if(space<=m*n && space>dim-m) {
+			return dim;
+		}else {
+			n++;
+			return findSpaceFoLadder(space, m*n, m, n);
 		}
 	}
 
