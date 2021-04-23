@@ -13,36 +13,36 @@ public class Menu {
 	private BufferedReader br;
 	private BufferedWriter bw;
 	private ManageBoard mB;
-	
+
 	public Menu() {
-		  br= new BufferedReader(new InputStreamReader(System.in));
-		  bw= new BufferedWriter(new OutputStreamWriter(System.out));
-		  mB = new ManageBoard();
+		br= new BufferedReader(new InputStreamReader(System.in));
+		bw= new BufferedWriter(new OutputStreamWriter(System.out));
+		mB = new ManageBoard();
 	}
 
 	public void recursionMenu() {
-	try {
-		int n= Integer.parseInt(br.readLine());
-		waitForOption(n);
-	} catch (NumberFormatException | IOException e) {
-		e.printStackTrace();
+		try {
+			int n= Integer.parseInt(br.readLine());
+			waitForOption(n);
+		} catch (NumberFormatException | IOException e) {
+			e.printStackTrace();
+		}
+
 	}
-	
-	}
-	
+
 	public void waitForOption(int n) {
-		
+
 		if(n!=0) {
 			try {
-				 n=showMenu();
-				 executeOperation(n);
+				n=showMenu();
+				executeOperation(n);
 			} catch (NumberFormatException | IOException e) {
 				e.printStackTrace();
 			}
 			waitForOption(n);
 		}
 	}
-	
+
 	public int showMenu() throws IOException, NumberFormatException {
 
 		int option=0;
@@ -86,18 +86,28 @@ public class Menu {
 
 		}
 	}
-	
+
 	public void createBoard() throws IOException {
 		String input=br.readLine();
 		String[] split =input.split(" ");
-		mB.createBoard(Integer.parseInt(split[0]),Integer.parseInt(split[1]) , Integer.parseInt(split[2]), Integer.parseInt(split[3]), split[4]);
-		bw.write(mB.printString());
+		if((Integer.parseInt(split[2])*2 + Integer.parseInt(split[3])*2)<Integer.parseInt(split[0])*Integer.parseInt(split[1])-2) {
+			mB.createBoard(Integer.parseInt(split[0]),Integer.parseInt(split[1]) , Integer.parseInt(split[2]), Integer.parseInt(split[3]), split[4]);
+			bw.write(mB.printString());
+		}else {
+			bw.write("Hay más escaleras serpientes que casillas disponibles");
+			bw.newLine();
+			bw.newLine();
+			bw.write("Entre las variables del juego");
+			bw.newLine();
+			bw.flush();
+			createBoard();
+		}
 	}
-	
+
 	public void play() throws IOException {
 		String input = br.readLine();
 		if(input.equals("menu")) {
-			
+
 		}else if(input.equals("num")) {
 			bw.write(mB.printString());
 			bw.newLine();
@@ -115,6 +125,11 @@ public class Menu {
 			play();
 		}else if(input.equals("simul")){
 			bw.write("simul pog");
+			bw.newLine();
+			bw.flush();
+			play();
+		}else {
+			bw.write("Opción no valida");
 			bw.newLine();
 			bw.flush();
 			play();

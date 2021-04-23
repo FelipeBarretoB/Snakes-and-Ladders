@@ -146,7 +146,7 @@ public class ManageBoard {
 		ascii=65;
 		numOfLadders=1;
 		int dim=n*m;
-		end = new Space( "f",  null,  null,  null,  null,  dim,  null);
+		end = new Space( null,  null,  null,  null,  null,  dim,  null);
 		dim--;
 		setBoard( dim,  m,  n,end, m-1, false);
 		createSnakes(s);
@@ -168,7 +168,7 @@ public class ManageBoard {
 		if(dim!=0) {
 			if(c!=0) {
 				if(next.getRight()==null && !side){
-					next.setRight(new Space("f",null,null,null,null,dim,null));
+					next.setRight(new Space(null,null,null,null,null,dim,null));
 					dim--;
 					c--;
 					setBoard( dim,  m,  n,  next.getRight(), c, side);
@@ -176,7 +176,7 @@ public class ManageBoard {
 					setBoard( dim,  m,  n,  next.getRight(), c, side);
 				}
 				if(next.getLeft()==null && side){
-					next.setLeft(new Space("f",null,null,null,null,dim,null));
+					next.setLeft(new Space(null,null,null,null,null,dim,null));
 					dim--;
 					c--;
 					setBoard( dim,  m,  n,  next.getLeft(), c, side);
@@ -187,7 +187,7 @@ public class ManageBoard {
 				side=!side;
 				c=m-1;
 				if(next.getDown()==null){
-					next.setDown(new Space("f",null,null,null,null,dim,null));
+					next.setDown(new Space(null,null,null,null,null,dim,null));
 					dim--;
 					setBoard( dim,  m,  n,  next.getDown(), c, side);
 				}else if(next.getDown()!=null){
