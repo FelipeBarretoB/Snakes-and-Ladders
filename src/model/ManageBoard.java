@@ -137,7 +137,8 @@ public class ManageBoard {
 		this.m=m;
 		this.s=s;
 		this.e=e;
-		if((int)players.charAt(0) >= 48 && (int)players.charAt(0) >= 57){
+		if((int)players.charAt(0) >= 48 && (int)players.charAt(0) <= 57){
+			System.out.println((int)players.charAt(0));
 			this.players = new Players(Integer.parseInt(players));
 		}else {
 			this.players = new Players(players.length(), players);
