@@ -24,6 +24,8 @@ public class ManageBoard {
 	private String k;
 	//players
 	private Players players;
+	
+	private String playersInSpace = "";
 
 	public Space getEnd() {
 		return end;
@@ -312,13 +314,50 @@ public class ManageBoard {
 			return findSpaceFoLadder(space, m*n, m, n);
 		}
 	}
-
+	
+	private String findPlayerInSpace(int space) {
+		String positions = "";
+		positions = findPlayer(space, players.getFirst());
+		return positions;
+	}
+	
+	private String findPlayer(int space, Player p) {
+		System.out.println(players.getFirst().getIcon() + " " + p.getIcon());
+		System.out.println(playersInSpace);
+		if(p.getInSpace() == space) {
+				if(!playersInSpace.equals("")) {
+					if(p.getIcon() != playersInSpace.charAt(0)) {
+						System.out.println("a");
+						playersInSpace += p.getIcon();
+						p = p.getNext();
+						findPlayer(space, p);
+					}
+				}else {
+					System.out.println("b");
+					playersInSpace += p.getIcon();
+					p = p.getNext();
+					findPlayer(space, p);
+				}
+		}else {
+			if(!playersInSpace.equals("")) {
+				p = p.getNext();
+				findPlayer(space, p);
+			}else if(p.getIcon() == players.getFirst().getIcon()) {
+				return playersInSpace;
+			}
+			
+		}
+		return playersInSpace;
+	}//3 3 1 1 #%
+	
 	private String printString(int dim, String print,int m, int n, int c, int x,boolean side) {
+		System.out.println(findPlayerInSpace(getByDim(dim, m*n, m, n, end, m-1, false).getSpace()));
 		if(x!=0) {
 			if(c!=0) {
 				if(!side) {
 					if(dim>=10) {
-						print+="["+getByDim(dim, m*n, m, n, end, m-1, false).getSpace();
+						print+="["+getByDim(dim, m*n, m, n, end, m-1, false).getSpace() + 
+								findPlayerInSpace(getByDim(dim, m*n, m, n, end, m-1, false).getSpace());
 						if(getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()!=null) {
 							print+=getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()+"] ";
 						}else {
@@ -328,7 +367,8 @@ public class ManageBoard {
 						dim--;
 						return printString(dim, print, m, n, c,x,side);
 					}else {
-						print+="[ "+getByDim(dim, m*n, m, n, end, m-1, false).getSpace();
+						print+="[ "+getByDim(dim, m*n, m, n, end, m-1, false).getSpace() + 
+								findPlayerInSpace(getByDim(dim, m*n, m, n, end, m-1, false).getSpace());;
 						if(getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()!=null) {
 							print+=getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()+"] ";
 						}else {
@@ -340,7 +380,8 @@ public class ManageBoard {
 					}
 				}else {
 					if(dim>=10) {
-						print+="["+getByDim(dim, m*n, m, n, end, m-1, false).getSpace();
+						print+="["+getByDim(dim, m*n, m, n, end, m-1, false).getSpace() + 
+								findPlayerInSpace(getByDim(dim, m*n, m, n, end, m-1, false).getSpace());;
 						if(getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()!=null) {
 							print+=getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()+"] ";
 						}else {
@@ -350,7 +391,8 @@ public class ManageBoard {
 						dim++;
 						return printString(dim, print, m, n, c,x,side);
 					}else {
-						print+="[ "+getByDim(dim, m*n, m, n, end, m-1, false).getSpace();
+						print+="[ "+getByDim(dim, m*n, m, n, end, m-1, false).getSpace() + 
+								findPlayerInSpace(getByDim(dim, m*n, m, n, end, m-1, false).getSpace());;
 						if(getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()!=null) {
 							print+=getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()+"] ";
 						}else {

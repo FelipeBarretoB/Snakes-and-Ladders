@@ -37,5 +37,22 @@ public class Players {
 			last.setNext(first);
 		}
 	}
+
+	public Player getFirst() {
+		return first;
+	}
+
+	public void setFirst(Player first) {
+		this.first = first;
+	}
+
+	public Player getLast() {
+		return last;
+	}
+
+	public void setLast(Player last) {
+		this.last = last;
+	}
+	
 	
 }
