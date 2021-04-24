@@ -351,13 +351,12 @@ public class ManageBoard {
 	}//3 3 1 1 #%
 	
 	private String printString(int dim, String print,int m, int n, int c, int x,boolean side) {
-		System.out.println(findPlayerInSpace(getByDim(dim, m*n, m, n, end, m-1, false).getSpace()));
 		if(x!=0) {
 			if(c!=0) {
 				if(!side) {
 					if(dim>=10) {
 						print+="["+getByDim(dim, m*n, m, n, end, m-1, false).getSpace() + 
-								findPlayerInSpace(getByDim(dim, m*n, m, n, end, m-1, false).getSpace());
+								findPlayerInSpace(getByDim(m*n, m*n, m, n, end, m-1, false).getSpace());
 						if(getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()!=null) {
 							print+=getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()+"] ";
 						}else {
@@ -368,7 +367,7 @@ public class ManageBoard {
 						return printString(dim, print, m, n, c,x,side);
 					}else {
 						print+="[ "+getByDim(dim, m*n, m, n, end, m-1, false).getSpace() + 
-								findPlayerInSpace(getByDim(dim, m*n, m, n, end, m-1, false).getSpace());;
+								findPlayerInSpace(getByDim(m*n, m*n, m, n, end, m-1, false).getSpace());;
 						if(getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()!=null) {
 							print+=getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()+"] ";
 						}else {
@@ -381,7 +380,7 @@ public class ManageBoard {
 				}else {
 					if(dim>=10) {
 						print+="["+getByDim(dim, m*n, m, n, end, m-1, false).getSpace() + 
-								findPlayerInSpace(getByDim(dim, m*n, m, n, end, m-1, false).getSpace());;
+								findPlayerInSpace(getByDim(m*n, m*n, m, n, end, m-1, false).getSpace());;
 						if(getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()!=null) {
 							print+=getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()+"] ";
 						}else {
@@ -392,7 +391,7 @@ public class ManageBoard {
 						return printString(dim, print, m, n, c,x,side);
 					}else {
 						print+="[ "+getByDim(dim, m*n, m, n, end, m-1, false).getSpace() + 
-								findPlayerInSpace(getByDim(dim, m*n, m, n, end, m-1, false).getSpace());;
+								findPlayerInSpace(getByDim(m*n, m*n, m, n, end, m-1, false).getSpace());;
 						if(getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()!=null) {
 							print+=getByDim(dim, m*n, m, n, end, m-1, false).getSpecial()+"] ";
 						}else {
