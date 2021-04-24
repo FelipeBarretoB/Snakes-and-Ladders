@@ -138,14 +138,11 @@ public class ManageBoard {
 		this.m=m;
 		this.s=s;
 		this.e=e;
-		System.out.println((int)players.charAt(0));
 		if((int)players.charAt(0) >= 48 && (int)players.charAt(0) <= 57){
-			System.out.println("ola1");
 			this.players = new Players(Integer.parseInt(players));
 		}else {
 			this.players = new Players(players.length(), players);
 			System.out.println(players);
-			System.out.println("ola2");
 		}//3 3 1 1 #%
 		
 		print="";
@@ -162,8 +159,6 @@ public class ManageBoard {
 		connectNeighbours(dim+1, m, end, m-1, false);
 		connectUpAndDown(dim+1, n,m, end, m, m, n, false);
 		setPlayerInSpace();
-		System.out.println("player 1: " + this.players.get(0).getIcon() + " player 2: " + this.players.get(1).getIcon());
-		System.out.println("player 1: " + this.players.getFirst().getIcon() + " player 2: " + this.players.getLast().getIcon());
 	}
 
 	public String printString() {
