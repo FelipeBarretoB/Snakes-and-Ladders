@@ -1,7 +1,7 @@
 package model;
 
 public class Space {
-	private String info;
+	private String playersIn;
 	private Space right;
 	private Space left;
 	private Space up;
@@ -10,8 +10,8 @@ public class Space {
 	private String special;
 	
 	
-	public Space(String info, Space right, Space left, Space up, Space down, int space, String special) {
-		this.info = info;
+	public Space(Space right, Space left, Space up, Space down, int space, String special) {
+		this.playersIn = "";
 		this.right = right;
 		this.left = left;
 		this.up = up;
@@ -20,7 +20,9 @@ public class Space {
 		this.special=special;
 	}
 
-	
+	public void addPlayerIn(char c) {
+		playersIn += c;
+	}
 	public String getSpecial() {
 		return special;
 	}
@@ -45,13 +47,15 @@ public class Space {
 
 
 
-	public String getInfo() {
-		return info;
+	public String getPlayersIn() {
+		return playersIn;
 	}
 
-	public void setInfo(String info) {
-		this.info = info;
+
+	public void setPlayersIn(String playersIn) {
+		this.playersIn = playersIn;
 	}
+
 
 	public Space getRight() {
 		return right;
