@@ -4,19 +4,27 @@ public class Player {
 	char icon;
 	Player next;
 	int inSpace;
-	int a;
+	boolean turn;
 	
 	public Player(char icon) {
 		this.icon = icon;
 		this.next = null;
 		this.inSpace = 1;
+		this.turn = false;
 	}
 	public Player(char icon, Player next) {
 		this.icon = icon;
 		this.next = next;
 		this.inSpace = 1;
+		this.turn = false;
 	}
 	
+	public boolean isTurn() {
+		return turn;
+	}
+	public void setTurn(boolean turn) {
+		this.turn = turn;
+	}
 	public char getIcon() {
 		return icon;
 	}

@@ -162,7 +162,7 @@ public class ManageBoard {
 		//print(dim+1, m, n, end, m-1, false);
 		connectNeighbours(dim+1, m, end, m-1, false);
 		connectUpAndDown(dim+1, n,m, end, m, m, n, false);
-		ciclo();
+		organizePlayerInSpaces();
 	}
 
 	public String printString() {
@@ -316,6 +316,25 @@ public class ManageBoard {
 			return findSpaceFoLadder(space, m*n, m, n);
 		}
 	}
+	public String actionPlayers() {
+		printBoardInGame();
+		movePlayersByOrder();
+		return null;
+	}
+	private String movePlayersByOrder() {
+		int x = getPlayerOnTurn(players.getSize());
+		movePlayer(players.get(x));
+		return null;
+	}
+	private int getPlayerOnTurn(int i) {
+		int x = -1;
+		if(players.get(i).isTurn()) {
+			x = i;
+		}else {
+			getPlayerOnTurn(i-1);
+		}
+		return x;
+	}
 	
 	public String printBoardInGame() {
 		print = "";
@@ -392,7 +411,7 @@ public class ManageBoard {
 	}//3 3 1 1 #%
 	
 	
-	private void ciclo() {
+	private void organizePlayerInSpaces() {
 		int x = players.getSize();
 		setPlayerInSpace(x);
 	}
