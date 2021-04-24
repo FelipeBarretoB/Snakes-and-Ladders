@@ -128,14 +128,7 @@ public class ManageBoard {
 		this.players = players;
 	}
 
-	public int rollDie() {
-		Random random = new Random();
-		return  random.nextInt(6 - 1 + 1) + 1;
-	}
 	
-	public void movePlayer(Player p) {
-		p.setInSpace(p.getInSpace() + rollDie());
-	}
 
 	public void createBoard(int n, int m, int s, int e,String players) {
 		this.n=n;
@@ -146,7 +139,6 @@ public class ManageBoard {
 			this.players = new Players(Integer.parseInt(players));
 		}else {
 			this.players = new Players(players.length(), players);
-			System.out.println(players);
 		}//3 3 1 1 #%
 		
 		print="";
@@ -163,6 +155,7 @@ public class ManageBoard {
 		connectNeighbours(dim+1, m, end, m-1, false);
 		connectUpAndDown(dim+1, n,m, end, m, m, n, false);
 		organizePlayerInSpaces();
+		
 	}
 
 	public String printString() {
@@ -316,22 +309,56 @@ public class ManageBoard {
 			return findSpaceFoLadder(space, m*n, m, n);
 		}
 	}
+	
 	public String actionPlayers() {
-		printBoardInGame();
 		movePlayersByOrder();
-		return null;
+		if(confirmVictory() > -1) {
+			organizePlayerInSpaces();
+			return "Juego terminado, ganador: "+confirmVictory()+ "\n" + printBoardInGame();
+		}
+		organizePlayerInSpaces();
+		return printBoardInGame();
 	}
-	private String movePlayersByOrder() {
-		int x = getPlayerOnTurn(players.getSize());
+	public int confirmVictory() {
+		int x = getPlayerSpace(players.getSize()-1);
+		return x;
+	}
+	
+	private int getPlayerSpace(int i) {
+		int x = -1;
+		if(i > -1) {
+			if(players.get(i).getInSpace() >= n*m) {
+				x = i;
+			}else {
+				x = getPlayerSpace(i-1);
+			}
+		}
+			
+		return x;
+	}
+	
+	private void movePlayersByOrder() {
+		int x = getPlayerOnTurn(players.getSize()-1);
+		players.get(x).setTurn(false);
+		players.get(x).getNext().setTurn(true);		
 		movePlayer(players.get(x));
-		return null;
+	}
+	
+	public int rollDie() {
+		Random random = new Random();
+		return  random.nextInt(6 - 1 + 1) + 1;
+	}
+	
+	public void movePlayer(Player p) {
+		int x = rollDie();
+		p.setInSpace(p.getInSpace() + x);
 	}
 	private int getPlayerOnTurn(int i) {
 		int x = -1;
 		if(players.get(i).isTurn()) {
 			x = i;
 		}else {
-			getPlayerOnTurn(i-1);
+			x = getPlayerOnTurn(i-1);
 		}
 		return x;
 	}
@@ -342,8 +369,6 @@ public class ManageBoard {
 	}//3 3 1 1 #%
 	
 	private String printBoardInGame(int dim, String print,int m, int n, int c, int x,boolean side) {
-		System.out.println(print);
-		System.out.println(getByDim(dim, m*n, m, n, end, m-1, false).getSpace());
 		if(x!=0) {
 			if(c!=0) {
 				if(!side) {
@@ -413,7 +438,8 @@ public class ManageBoard {
 	
 	private void organizePlayerInSpaces() {
 		int x = players.getSize();
-		setPlayerInSpace(x);
+		clearPlayersInSpaces(m*n);
+		setPlayerInSpace(x-1);
 	}
 	
 	private void setPlayerInSpace(int i) {
@@ -426,6 +452,15 @@ public class ManageBoard {
 	
 	private void setPlayerInSpace(char icon, int spaceNum) {
 		getByDim(spaceNum, m*n, m, n, end, m-1, false).addPlayerIn(icon);
+	}
+	
+	private void clearPlayersInSpaces(int dim) {
+		if(dim > 0) {
+			getByDim(dim, m*n, m, n, end, m-1, false).setPlayersIn("");
+			dim--;
+			clearPlayersInSpaces(dim);
+		}
+		
 	}
 	
 	/*private void setPlayerInSpace(Space s, int dim) {
