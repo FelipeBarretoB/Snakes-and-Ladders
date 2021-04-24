@@ -132,6 +132,10 @@ public class ManageBoard {
 		Random random = new Random();
 		return  random.nextInt(6 - 1 + 1) + 1;
 	}
+	
+	public void movePlayer(Player p) {
+		p.setInSpace(p.getInSpace() + rollDie());
+	}
 
 	public void createBoard(int n, int m, int s, int e,String players) {
 		this.n=n;
@@ -158,7 +162,7 @@ public class ManageBoard {
 		//print(dim+1, m, n, end, m-1, false);
 		connectNeighbours(dim+1, m, end, m-1, false);
 		connectUpAndDown(dim+1, n,m, end, m, m, n, false);
-		setPlayerInSpace();
+		ciclo();
 	}
 
 	public String printString() {
@@ -388,9 +392,16 @@ public class ManageBoard {
 	}//3 3 1 1 #%
 	
 	
-	private void setPlayerInSpace() {
-		for(int i = 0; i < players.getSize();i++) {
+	private void ciclo() {
+		int x = players.getSize();
+		setPlayerInSpace(x);
+	}
+	
+	private void setPlayerInSpace(int i) {
+		if(i != -1) {
 			setPlayerInSpace(players.get(i).getIcon(),players.get(i).getInSpace());
+			i--;
+			setPlayerInSpace(i);
 		}
 	}
 	
