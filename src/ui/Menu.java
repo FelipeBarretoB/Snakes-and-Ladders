@@ -120,7 +120,11 @@ public class Menu {
 			bw.write(mB.actionPlayers());
 			bw.newLine();
 			bw.flush();
-			play();
+			if(mB.actionPlayers().contains("Juego terminado, ganador: ")) {
+			}else {
+				play();
+			}
+			
 		}else if(input.equals("help")) {
 			bw.write("Entre un salto de linea para lanzar el dado \nEscriba: menu para volver el menu y para el juego \nEscriba: num, para mostrar el tablero completo \nEscriba: simul, para simular el juego");
 			bw.newLine();

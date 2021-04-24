@@ -24,8 +24,6 @@ public class ManageBoard {
 	private String k;
 	//players
 	private Players players;
-	
-	private String playersInSpace = "";
 
 	public Space getEnd() {
 		return end;
@@ -313,8 +311,7 @@ public class ManageBoard {
 	public String actionPlayers() {
 		movePlayersByOrder();
 		if(confirmVictory() > -1) {
-			organizePlayerInSpaces();
-			return "Juego terminado, ganador: "+confirmVictory()+ "\n" + printBoardInGame();
+			return "Juego terminado, ganador: "+(confirmVictory()+1)+ "\n" + printBoardInGame();
 		}
 		organizePlayerInSpaces();
 		return printBoardInGame();
