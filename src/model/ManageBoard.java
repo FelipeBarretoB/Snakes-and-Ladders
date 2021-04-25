@@ -338,6 +338,7 @@ public class ManageBoard {
 
 	public String actionPlayers() {
 		movePlayersByOrder();
+		organizePlayerInSpaces();
 		if(confirmVictory() > -1) {
 			addValuesToRoot(winner.getIcon(), (winner.getTimesMoved())*(m*n), root);
 			printInOrder="";
@@ -345,7 +346,6 @@ public class ManageBoard {
 			return "Juego terminado, ganador: "+players.get(confirmVictory()).getIcon()+ "\n" + printBoardInGame();
 			
 		}
-		organizePlayerInSpaces();
 		return printBoardInGame();
 	}
 	public int confirmVictory() {
@@ -382,7 +382,7 @@ public class ManageBoard {
 	
 	public void movePlayer(Player p) {
 		int x = rollDie();
-		System.out.println(x);
+		System.out.println("dado: "+x);
 		p.addDiceScores(x);
 		p.setTimesMoved(p.getTimesMoved()+1);
 		p.setInSpace(p.getInSpace() + x);
@@ -487,38 +487,45 @@ public class ManageBoard {
 		}
 	}
 	
-	private void clearPlayer(Player p) {
+	/*private void clearPlayer(Player p) {
 		
-	}
+	}*/
 	
 	private void setPlayerInSpace(Player p) {
 		char icon = p.getIcon();
 		int spaceNum = p.getInSpace();
-		Space s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
-		//s.addPlayerIn(icon);
-		if(s.getSpecial() != null) {
-			try {
-				Integer.parseInt(s.getSpecial());
-				String ladder = s.getSpecial();
-				if(findMatchingLadder(spaceNum +1, ladder) != null) {
-					clearPlayer(p);
-					findMatchingLadder(spaceNum +1, ladder).addPlayerIn(icon);
-					p.setInSpace(findMatchingLadder(spaceNum +1, ladder).getSpace());
-				}else {
-					s.addPlayerIn(icon);
-				}
-			}catch(NumberFormatException ne){
-				String snake = s.getSpecial();
-				if(findMatchingSnake(spaceNum-1, snake) != null) {
-					findMatchingSnake(spaceNum-1, snake).addPlayerIn(icon);
-					p.setInSpace(findMatchingLadder(spaceNum -1, snake).getSpace());
-				}else {
-					s.addPlayerIn(icon);
-				}
-			}//3 3 1 1 #%
+		System.out.println("spacenum: "+spaceNum);
+		if(spaceNum <= m*n) {
+			Space s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
+			//s.addPlayerIn(icon);
+			if(s.getSpecial() != null) {
+				try {
+					Integer.parseInt(s.getSpecial());
+					String ladder = s.getSpecial();
+					if(findMatchingLadder(spaceNum +1, ladder) != null) {
+						//clearPlayer(p);
+						findMatchingLadder(spaceNum +1, ladder).addPlayerIn(icon);
+						p.setInSpace(findMatchingLadder(spaceNum +1, ladder).getSpace());
+					}else {
+						s.addPlayerIn(icon);
+					}
+				}catch(NumberFormatException ne){
+					String snake = s.getSpecial();
+					if(findMatchingSnake(spaceNum-1, snake) != null) {
+						findMatchingSnake(spaceNum-1, snake).addPlayerIn(icon);
+						p.setInSpace(findMatchingLadder(spaceNum -1, snake).getSpace());
+					}else {
+						s.addPlayerIn(icon);
+					}
+				}//3 3 1 1 #%
+			}else {
+				s.addPlayerIn(icon);
+			}
 		}else {
-			s.addPlayerIn(icon);
+			p.setInSpace(n*m);
+			setPlayerInSpace(p);
 		}
+		
 	}
 	
 	private Space findMatchingLadder(int spaceNum, String ladder) {
@@ -526,7 +533,6 @@ public class ManageBoard {
 		if(spaceNum <= m*n) {
 			s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
 			if(s.getSpecial() != null && s.getSpecial().equals(ladder)) {
-				System.out.println("encuentra");
 				return s;
 			}else {
 				return findMatchingLadder((spaceNum+1), ladder);
@@ -541,14 +547,12 @@ public class ManageBoard {
 		Space s = null;
 		if(spaceNum > 0) {
 			s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
-			System.out.println("snake: " + snake + " spaceSpecial: " + s.getSpecial());
 			if(s.getSpecial() != null && s.getSpecial().equals(snake)) {
 				return s;
 			}else {
 				return findMatchingSnake((spaceNum-1), snake);
 			}
 		}else {
-			System.out.println("no encuentra");
 			return null;
 		}
 	}
