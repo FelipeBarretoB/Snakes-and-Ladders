@@ -17,16 +17,29 @@ public class Players {
 		first = new Player ((char) names.charAt(amount-1));
 		first.setTurn(true);
 		size = 1;
-		Player aux = first;
-		addPlayers(amount-2, aux, names);
+		addPlayers(amount-2, first, names);
 	}
 	
 	public void addPlayers(int amount, Player aux, String names) {
+		System.out.println("amount in: "+amount);
 		if(amount >= 0) {
 			aux.setNext(new Player((char) (names.charAt(amount))));
 			size++;
 			amount--;
-			addPlayers(amount,aux.getNext());
+			System.out.println("amount out: "+amount);
+			addPlayers(amount,aux.getNext(), names);
+		}else {
+			last = aux;
+			last.setNext(first);
+			
+		}
+	}
+	public void addPlayers(int amount, Player aux) {
+		if(amount > 0) {
+			aux.setNext(new Player((char) (33 + amount)));
+			size++;
+			amount--;
+			addPlayers(amount,aux);
 		}else {
 			last = aux;
 			last.setNext(first);
@@ -34,18 +47,21 @@ public class Players {
 	}
 	
 	public String stringPlayers() {
-		String pstr = "";
-		pstr = getPlayersIcons(size-1, pstr);
+		System.out.println("first: " + first.getIcon());
+		System.out.println("last: " + last.getIcon());
+		String pstr = getPlayersIcons(size-1);
 		return pstr;
 	}
 	
-	public String getPlayersIcons(int s, String ps) {
+	public String getPlayersIcons(int s) {
+		System.out.println("first: " + first.getIcon());
+		System.out.println("last: " + last.getIcon());
 		if(s >= 0) {
-			ps += get(s).getIcon();
+			char p = get(s).getIcon();
 			s--;
-			getPlayersIcons(s,ps);
+			return p + getPlayersIcons(s);
 		}
-		return ps;
+		return "";
 	}
 	
 	public Player get(int pos) {
@@ -63,17 +79,7 @@ public class Players {
 		}
 		return aux;
 	}
-	public void addPlayers(int amount, Player aux) {
-		if(amount > 0) {
-			aux.setNext(new Player((char) (33 + amount)));
-			size++;
-			amount--;
-			addPlayers(amount,aux);
-		}else {
-			last = aux;
-			last.setNext(first);
-		}
-	}
+	
 	/*public String getPlayers() {
 		String players = "";
 		getPlayer(first);

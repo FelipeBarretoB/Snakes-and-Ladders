@@ -166,7 +166,7 @@ public class ManageBoard {
 			this.players = new Players(players.length(), players);
 		}//3 3 1 1 #%
 		
-		System.out.println("players"+this.players.stringPlayers());
+		System.out.println("players: "+this.players.stringPlayers());
 		print="";
 		ascii=65;
 		numOfLadders=1;
