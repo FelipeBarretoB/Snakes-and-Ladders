@@ -1,4 +1,4 @@
-﻿# T2-Snakes-and-Ladders
+﻿# Snakes-and-Ladders
 This project is a creation of the snakes and ladders board game with out using any loops or arrays of any kind. The idea was to use recursion and linked list. This includes the board (A matrix of linked class) and a binary tree. 
 
 The ladders are represented by numbers.
