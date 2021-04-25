@@ -14,22 +14,22 @@ public class Menu {
 	private BufferedWriter bw;
 	private ManageBoard mB;
 	/**
-	*The constructor of the class menu <br>
-	*gives value to br
-	*gives value to bw
-	*uses default constructor for mB
-    *<b>pre: The existence of bw, br and mb, and the class Manage board </b> 
-	*/
+	 *The constructor of the class menu <br>
+	 *gives value to br
+	 *gives value to bw
+	 *uses default constructor for mB
+	 *<b>pre: The existence of bw, br and mb, and the class Manage board </b> 
+	 */
 	public Menu() {
 		br= new BufferedReader(new InputStreamReader(System.in));
 		bw= new BufferedWriter(new OutputStreamWriter(System.out));
 		mB = new ManageBoard();
 	}
 	/**
-	*The method uses recursion to create a menu through the console <br>
-    *<b>pre: The creation of the methid waitForOption </b> 
-	*<b>post: gives a value to the method waitForOption </b>
-	*/
+	 *The method uses recursion to create a menu through the console <br>
+	 *<b>pre: The creation of the methid waitForOption </b> 
+	 *<b>post: gives a value to the method waitForOption </b>
+	 */
 	public void recursionMenu() {
 		try {
 			int n= Integer.parseInt(br.readLine());
@@ -41,11 +41,11 @@ public class Menu {
 	}
 
 	/**
-	*The method uses n to choose one of the options in the menu and then recursion to call it´s self <br>
-    *<b>pre: The creation of the method showMenu and executeOperation </b> 
-	*<b>post: Gives a value to executeOperation and waitForOptionMenu  </b>
-	*@param n, the option the user has chosen  
-	*/
+	 *The method uses n to choose one of the options in the menu and then recursion to call it´s self <br>
+	 *<b>pre: The creation of the method showMenu and executeOperation </b> 
+	 *<b>post: Gives a value to executeOperation and waitForOptionMenu  </b>
+	 *@param n, the option the user has chosen  
+	 */
 	public void waitForOption(int n) {
 
 		if(n!=0) {
@@ -60,13 +60,14 @@ public class Menu {
 	}
 
 	/**
-	*The method prints the menu and returns the option the user chooses <br>
-    *<b>pre:  </b> 
-	*<b>post: returns the option chosen by the user </b>
-	*@return int, the option the user has chosen 
-	*/
+	 *The method prints the menu and returns the option the user chooses <br>
+	 *<b>pre:  </b> 
+	 *<b>post: returns the option chosen by the user </b>
+	 *@return int, the option the user has chosen 
+	 *@throws IOException
+	 *@throws NumberFormatException
+	 */
 	public int showMenu() throws IOException, NumberFormatException {
-
 		int option=0;
 		bw.write(
 				"Menú principal, seleccione una opción\n" +
@@ -83,11 +84,12 @@ public class Menu {
 	}
 
 	/**
-	*The method executes the operation the user has chosen <br>
-    *<b>pre: The creation of the methods: createBoard and play </b> 
-	*<b>post: Calls a method or closes the program </b>
-	*@param operation, the option the user has chosen
-	*/
+	 *The method executes the operation the user has chosen <br>
+	 *<b>pre: The creation of the methods: createBoard and play </b> 
+	 *<b>post: Calls a method or closes the program </b>
+	 *@param operation, the option the user has chosen
+	 *@throws IOException
+	 */
 	public void executeOperation(int operation) throws IOException{
 
 		switch(operation) {
@@ -116,10 +118,11 @@ public class Menu {
 	}
 
 	/**
-	*The method creates the game board by asking for a String, if the board can´t be created, it calls for a new String <br>
-    *<b>pre: The creation of the methods: createBoard, printBoardInGame and printString in the class ManageBoard </b> 
-	*<b>post: The creation of the game board </b>
-	*/
+	 *The method creates the game board by asking for a String, if the board can´t be created, it calls for a new String <br>
+	 *<b>pre: The creation of the methods: createBoard, printBoardInGame and printString in the class ManageBoard </b> 
+	 *<b>post: The creation of the game board </b>
+	 *@throws IOException
+	 */
 	public void createBoard() throws IOException {
 		String input=br.readLine();
 		String[] split =input.split(" ");
@@ -136,22 +139,23 @@ public class Menu {
 			bw.newLine();
 			bw.flush();
 			createBoard();
-			
+
 		}
 	}
 
 	/**
-	*The method waits for a String input from the console, and does something according to said input <br>
-	*if the input is menu, it returns to the menu
-	*if the input is num, it calls the method printString from the class ManageBoard
-	*if the input is simul, it calls the method simul from the class Menu
-	*if the input is help, it prints the possible options the user can choose from
-	*if the input is a line jump, it calls for the method actionPlayer from the class ManageBoard
-	*if the input is anything else, it asks for a new input
-    *<b>pre: The creation of the methods: actionPlayer and printString, from the class ManageBoard and the method simul from the class Menu </b> 
-	*<b>post: Executes a method depending of the input </b>
-	*/
-	
+	 *The method waits for a String input from the console, and does something according to said input <br>
+	 *if the input is menu, it returns to the menu
+	 *if the input is num, it calls the method printString from the class ManageBoard
+	 *if the input is simul, it calls the method simul from the class Menu
+	 *if the input is help, it prints the possible options the user can choose from
+	 *if the input is a line jump, it calls for the method actionPlayer from the class ManageBoard
+	 *if the input is anything else, it asks for a new input
+	 *<b>pre: The creation of the methods: actionPlayer and printString, from the class ManageBoard and the method simul from the class Menu </b> 
+	 *<b>post: Executes a method depending of the input </b>
+	 *@throws IOException
+	 */
+
 	public void play() throws IOException {
 		String input = br.readLine();
 		if(input.equals("menu")) {
@@ -174,7 +178,7 @@ public class Menu {
 				bw.flush();
 				play();
 			}
-			
+
 		}else if(input.equals("help")) {
 			bw.write("Entre un salto de linea para lanzar el dado \nEscriba: menu para volver el menu y para el juego \nEscriba: num, para mostrar el tablero completo \nEscriba: simul, para simular el juego");
 			bw.newLine();
@@ -193,14 +197,15 @@ public class Menu {
 			play();
 		}
 	}
-	
-	
+
+
 	/**
-	*The method uses the game to play the game until someone has won <br>
-    *<b>pre: the creation of the method actionPlayers </b> 
-	*<b>post: The addition of a new Player object in the team's player array, and the same object added to the clubEmployees ArrayList </b>
-	*@param play, the string that the method actionPlayers returns 
-	*/
+	 *The method uses the game to play the game until someone has won <br>
+	 *<b>pre: the creation of the method actionPlayers </b> 
+	 *<b>post: The addition of a new Player object in the team's player array, and the same object added to the clubEmployees ArrayList </b>
+	 *@param play, the string that the method actionPlayers returns 
+	 *@throws IOException
+	 */
 	public void simul(String play) throws IOException {
 		if(play.contains("Juego terminado, ganador: ")) {
 			bw.write(play);
@@ -218,5 +223,5 @@ public class Menu {
 			simul(play);
 		}
 	}
-	
+
 }
