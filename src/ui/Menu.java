@@ -77,7 +77,6 @@ public class Menu {
 			play();
 			break;
 		case 2:
-			bw.write("caso 2 \n \n");
 			bw.write(mB.getPrintInOrder());
 			bw.flush();
 			break;
@@ -137,10 +136,11 @@ public class Menu {
 			bw.flush();
 			play();
 		}else if(input.equals("simul")){
-			bw.write("simul pog");
+			String play= mB.actionPlayers();
+			bw.write(play);
 			bw.newLine();
 			bw.flush();
-			play();
+			simul(play);
 		}else {
 			bw.write("Opción no valida");
 			bw.newLine();
@@ -148,4 +148,23 @@ public class Menu {
 			play();
 		}
 	}
+	
+	public void simul(String play) throws IOException {
+		if(play.contains("Juego terminado, ganador: ")) {
+			bw.write(play);
+			bw.newLine();
+			bw.flush();
+		}else {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+			}
+			play=mB.actionPlayers();
+			bw.write(play);
+			bw.newLine();
+			bw.flush();
+			simul(play);
+		}
+	}
+	
 }

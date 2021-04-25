@@ -176,8 +176,6 @@ public class ManageBoard {
 		setBoard( dim,  m,  n,end, m-1, false);
 		createSnakes(s);
 		createLadders(e);
-		//System.out.println(end.getRight().getRight().getDown().getSpace());
-		//print(dim+1, m, n, end, m-1, false);
 		connectNeighbours(dim+1, m, end, m-1, false);
 		connectUpAndDown(dim+1, n,m, end, m, m, n, false);
 		organizePlayerInSpaces();
@@ -222,38 +220,6 @@ public class ManageBoard {
 		}
 	}
 
-	/*
-	private void print(int dim, int m, int n, Space next, int c, boolean side) {
-		if(dim!=0) {
-			System.out.println(c);
-			if(c!=0) {
-				if(next.getRight()!=null && !side){
-					dim--;
-					c--;
-					System.out.println(next.getSpace()+" a "+next.getRight().getSpace());
-					print( dim,  m,  n,  next.getRight(), c, side);
-				}
-				if(next.getLeft()!=null && side){
-					dim--;
-					c--;
-					System.out.println(next.getSpace()+" a "+next.getLeft().getSpace());
-					print=next.getLeft().getSpace()+" "+print;
-					print( dim,  m,  n,  next.getLeft(), c, side);
-				}
-			}else {
-				side=!side;
-				c=m-1;
-				if(next.getDown()!=null){
-					dim--;
-					System.out.println(next.getSpace()+" a "+next.getDown().getSpace());
-					print+="\n"+next.getDown().getSpace();
-					print( dim,  m,  n,  next.getDown(), c, side);
-				}
-			}
-
-		}
-	}
-	*/
 	public void createLadders(int numOfLadders) {
 		if(numOfLadders!=0) {
 			createLadders(m*n,  m,  n,  end,  true, 0);
@@ -382,11 +348,8 @@ public class ManageBoard {
 	
 	public void movePlayer(Player p) {
 		int x = rollDie();
-		System.out.println("dado: "+x);
-		p.addDiceScores(x);
 		p.setTimesMoved(p.getTimesMoved()+1);
 		p.setInSpace(p.getInSpace() + x);
-		System.out.println("moves "+p.getTimesMoved());
 	}
 	
 	private int getPlayerOnTurn(int i) {
@@ -494,10 +457,8 @@ public class ManageBoard {
 	private void setPlayerInSpace(Player p) {
 		char icon = p.getIcon();
 		int spaceNum = p.getInSpace();
-		System.out.println("spacenum: "+spaceNum);
 		if(spaceNum <= m*n) {
 			Space s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
-			//s.addPlayerIn(icon);
 			if(s.getSpecial() != null) {
 				try {
 					Integer.parseInt(s.getSpecial());
@@ -566,49 +527,6 @@ public class ManageBoard {
 		
 	}
 	
-	/*private void setPlayerInSpace(Space s, int dim) {
-		String positions = "";
-		for(int i = dim; i >= 1; i--) {
-			if(s.getSpace()==players.get(i).getInSpace()) {
-				s.addPlayerIn(players.get(i).getIcon());
-			}else {
-				setPlayerInSpace(s, dim);
-			}
-		}
-		
-	}*/
-	
-	/*private String findPlayer(int space, Player p) {
-		System.out.println(players.getFirst().getIcon() + " " + p.getIcon());
-		System.out.println(playersInSpace);
-		if(p.getInSpace() == space) {
-				if(!playersInSpace.equals("")) {
-					if(p.getIcon() != playersInSpace.charAt(0)) {
-						System.out.println("ans: " + playersInSpace);
-						playersInSpace += p.getIcon();
-						p = p.getNext();
-						findPlayer(space, p);
-					}else {
-						return playersInSpace;
-					}
-				}else {
-					System.out.println("ans: " + playersInSpace);
-					playersInSpace += p.getIcon();
-					p = p.getNext();
-					findPlayer(space, p);
-				}
-		}else {
-			if(!playersInSpace.equals("")) {
-				p = p.getNext();
-				findPlayer(space, p);
-			}else if(p.getIcon() == players.getFirst().getIcon()) {
-				return playersInSpace;
-			}
-			
-		}
-		return playersInSpace;
-	}3 3 1 1 #%
-	*/
 	private String printString(int dim, String print,int m, int n, int c, int x,boolean side) {
 		if(x!=0) {
 			if(c!=0) {
@@ -760,11 +678,9 @@ public class ManageBoard {
 	
 	public void addValuesToRoot(char icon, int score, Score root) {
 		if(root.getScore()==0) {
-			System.out.println("pimer if");
 			root.setScore(score);
 			root.setPlayer(icon);
 		}else if (root.getScore() >score){
-			System.out.println("segundo if");
 			if(root.getRight() == null) {
 				root.setRight(new Score(root,null,null,0,'a'));
 				addValuesToRoot(icon, score, root.getRight());
@@ -772,7 +688,6 @@ public class ManageBoard {
 				addValuesToRoot(icon, score, root.getRight());
 			}
 		}else {
-			System.out.println("tercero if");
 			if(root.getLeft()==null) {
 				root.setLeft(new Score(root, null, null, 0, 'a'));
 				addValuesToRoot(icon, score, root.getLeft());
@@ -785,7 +700,6 @@ public class ManageBoard {
 
 	public void inOrderScore(Score root) {
 		if(root!=null) {
-			System.out.println("pasa");
 			inOrderScore(root.getRight());
 			
 			printInOrder+= root.getPlayer() + " "+ root.getScore()+"\n";
@@ -793,21 +707,6 @@ public class ManageBoard {
 			inOrderScore(root.getLeft());
 		}
 	}
-	int c=0;
-	 void printInorder(Score node){
-		 System.out.println(c++);
-	        if (node == null) {
-	            return;
-	        }
-	 
-	        /* first recur on left child */
-	        printInorder(node.getRight());
-	 
-	        /* then print the data of node */
-	       printInOrder+= node.getPlayer() + " "+ node.getScore()+"\n";
-	 
-	        /* now recur on right child */
-	        printInorder(node.getLeft());
-	    }
+
 }
 
