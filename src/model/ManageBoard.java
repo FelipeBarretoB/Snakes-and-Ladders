@@ -24,6 +24,7 @@ public class ManageBoard {
 	private String k;
 	//players
 	private Players players;
+	
 
 	public Space getEnd() {
 		return end;
@@ -348,6 +349,9 @@ public class ManageBoard {
 	
 	public void movePlayer(Player p) {
 		int x = rollDie();
+		System.out.println(x);
+		p.addDiceScores(x);
+		p.setTimesMoved(p.getTimesMoved()+1);
 		p.setInSpace(p.getInSpace() + x);
 	}
 	private int getPlayerOnTurn(int i) {
@@ -448,7 +452,52 @@ public class ManageBoard {
 	}
 	
 	private void setPlayerInSpace(char icon, int spaceNum) {
-		getByDim(spaceNum, m*n, m, n, end, m-1, false).addPlayerIn(icon);
+		Space s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
+		s.addPlayerIn(icon);
+		if(s.getSpecial() != null) {
+			try {
+				Integer.parseInt(s.getSpecial());
+				String ladder = s.getSpecial();
+				if(findMatchingLadder(spaceNum +1, ladder) != null) {
+					clearPlayersInSpaces(m*n);
+					findMatchingLadder(spaceNum +1, ladder).addPlayerIn(icon);
+				}
+			}catch(NumberFormatException ne){
+				String snake = s.getSpecial();
+				if(findMatchingSnake(spaceNum-1, snake) != null) {
+					clearPlayersInSpaces(m*n);
+					findMatchingSnake(spaceNum-1, snake).addPlayerIn(icon);
+				}
+			}
+		}/*else {
+			s.addPlayerIn(icon);
+		}*/
+	}
+	
+	private Space findMatchingLadder(int spaceNum, String ladder) {
+		if(spaceNum <= m*n) {
+			Space s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
+			if(s.getSpecial() != null && s.getSpecial().equals(ladder)) {
+				return s;
+			}else {
+				return findMatchingLadder((spaceNum+1), ladder);
+			}
+		}else {
+			return null;
+		}
+	}
+	
+	private Space findMatchingSnake(int spaceNum, String snake) {
+		if(spaceNum > 0) {
+			Space s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
+			if(s.getSpecial() != null && s.getSpecial().equals(snake)) {
+				return s;
+			}else {
+				return findMatchingSnake((spaceNum-1), snake);
+			}
+		}else {
+			return null;
+		}
 	}
 	
 	private void clearPlayersInSpaces(int dim) {
