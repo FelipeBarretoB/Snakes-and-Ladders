@@ -7,26 +7,25 @@ public class Players {
 	
 	public Players(int amount) {
 		first = new Player ((char) 33);
+		first.setTurn(true);
 		size = 1;
 		Player aux = first;
 		addPlayers(amount, aux);
 	}
 	
 	public Players(int amount, String names) {
-		//System.out.println(names.charAt(amount-1));
 		first = new Player ((char) names.charAt(amount-1));
+		first.setTurn(true);
 		size = 1;
 		Player aux = first;
 		addPlayers(amount-2, aux, names);
 	}
 	
 	public void addPlayers(int amount, Player aux, String names) {
-		System.out.println("ese "+names.charAt(amount));
 		if(amount >= 0) {
 			aux.setNext(new Player((char) (names.charAt(amount))));
 			size++;
 			amount--;
-			System.out.println(amount);
 			addPlayers(amount,aux.getNext());
 		}else {
 			last = aux;
@@ -42,7 +41,7 @@ public class Players {
 	}
 	
 	public Player getPlayer(int a, Player aux) {
-		if(a != 0) {
+		if(a > 0) {
 			a--;
 			aux = getPlayer(a, aux.getNext());
 		}

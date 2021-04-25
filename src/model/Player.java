@@ -1,22 +1,42 @@
 package model;
 
 public class Player {
-	char icon;
-	Player next;
-	int inSpace;
-	int a;
+	private char icon;
+	private Player next;
+	private int inSpace;
+	private boolean turn;
+	private int moves;
 	
 	public Player(char icon) {
 		this.icon = icon;
 		this.next = null;
 		this.inSpace = 1;
+		this.turn = false;
+		moves=0;
 	}
 	public Player(char icon, Player next) {
 		this.icon = icon;
 		this.next = next;
 		this.inSpace = 1;
+		this.turn = false;
 	}
 	
+	public void addmoves() {
+		moves++;
+	}
+	
+	public int getMoves() {
+		return moves;
+	}
+	public void setMoves(int moves) {
+		this.moves = moves;
+	}
+	public boolean isTurn() {
+		return turn;
+	}
+	public void setTurn(boolean turn) {
+		this.turn = turn;
+	}
 	public char getIcon() {
 		return icon;
 	}

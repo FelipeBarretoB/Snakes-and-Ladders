@@ -1,24 +1,26 @@
 package model;
 
 public class Score {
-	private Score root;
+	private Score parent;
 	private Score left;
 	private Score right;
 	private int score;
+	private char player;
 	
-	public Score(Score root, Score left, Score right, int score) {
-		this.root = root;
+	public Score(Score parent, Score left, Score right, int score, char player) {
+		this.parent = parent;
 		this.left = left;
 		this.right = right;
 		this.score=score;
+		this.player=player;
 	}
 
-	public Score getRoot() {
-		return root;
+	public Score getparent() {
+		return parent;
 	}
 
-	public void setRoot(Score root) {
-		this.root = root;
+	public void setparent(Score parent) {
+		this.parent = parent;
 	}
 
 	public Score getLeft() {
@@ -43,6 +45,14 @@ public class Score {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public char getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(char player) {
+		this.player = player;
 	}
 	
 	

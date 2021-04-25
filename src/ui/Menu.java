@@ -78,6 +78,7 @@ public class Menu {
 			break;
 		case 2:
 			bw.write("caso 2 \n \n");
+			bw.write(mB.getPrintInOrder());
 			bw.flush();
 			break;
 		default:
@@ -93,6 +94,8 @@ public class Menu {
 		if((Integer.parseInt(split[2])*2 + Integer.parseInt(split[3])*2)<Integer.parseInt(split[0])*Integer.parseInt(split[1])-2) {
 			mB.createBoard(Integer.parseInt(split[0]),Integer.parseInt(split[1]) , Integer.parseInt(split[2]), Integer.parseInt(split[3]), split[4]);
 			bw.write(mB.printString());
+			bw.newLine();
+			bw.write(mB.printBoardInGame());
 		}else {
 			bw.write("Hay más escaleras serpientes que casillas disponibles");
 			bw.newLine();
@@ -101,6 +104,7 @@ public class Menu {
 			bw.newLine();
 			bw.flush();
 			createBoard();
+			
 		}
 	}
 
@@ -114,10 +118,14 @@ public class Menu {
 			bw.flush();
 			play();
 		}else if(input.equals("")) {
-			bw.write(mB.printBoardInGame());
+			bw.write(mB.actionPlayers());
 			bw.newLine();
 			bw.flush();
-			play();
+			if(mB.actionPlayers().contains("Juego terminado, ganador: ")) {
+			}else {
+				play();
+			}
+			
 		}else if(input.equals("help")) {
 			bw.write("Entre un salto de linea para lanzar el dado \nEscriba: menu para volver el menu y para el juego \nEscriba: num, para mostrar el tablero completo \nEscriba: simul, para simular el juego");
 			bw.newLine();
