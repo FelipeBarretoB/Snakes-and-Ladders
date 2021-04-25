@@ -342,7 +342,7 @@ public class ManageBoard {
 			addValuesToRoot(winner.getIcon(), (winner.getTimesMoved())*(m*n), root);
 			printInOrder="";
 			inOrderScore(root);
-			return "Juego terminado, ganador: "+winner.getIcon()+ "\n" + printBoardInGame();
+			return "Juego terminado, ganador: "+players.get(confirmVictory()).getIcon()+ "\n" + printBoardInGame();
 			
 		}
 		organizePlayerInSpaces();
@@ -481,59 +481,74 @@ public class ManageBoard {
 	private void setPlayerInSpace(int i) {
 		
 		if(i != -1) {
-			setPlayerInSpace(players.get(i).getIcon(),players.get(i).getInSpace(), i);
+			setPlayerInSpace(players.get(i));
 			i--;
 			setPlayerInSpace(i);
 		}
 	}
 	
-	private void setPlayerInSpace(char icon, int spaceNum, int i) {
+	private void clearPlayer(Player p) {
+		
+	}
+	
+	private void setPlayerInSpace(Player p) {
+		char icon = p.getIcon();
+		int spaceNum = p.getInSpace();
 		Space s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
-		s.addPlayerIn(icon);
+		//s.addPlayerIn(icon);
 		if(s.getSpecial() != null) {
 			try {
 				Integer.parseInt(s.getSpecial());
 				String ladder = s.getSpecial();
 				if(findMatchingLadder(spaceNum +1, ladder) != null) {
-					clearPlayersInSpaces(m*n);
+					clearPlayer(p);
 					findMatchingLadder(spaceNum +1, ladder).addPlayerIn(icon);
-					players.get(i).setInSpace(findMatchingLadder(spaceNum +1, ladder).getSpace());
+					p.setInSpace(findMatchingLadder(spaceNum +1, ladder).getSpace());
+				}else {
+					s.addPlayerIn(icon);
 				}
 			}catch(NumberFormatException ne){
 				String snake = s.getSpecial();
 				if(findMatchingSnake(spaceNum-1, snake) != null) {
-					clearPlayersInSpaces(m*n);
 					findMatchingSnake(spaceNum-1, snake).addPlayerIn(icon);
-					players.get(i).setInSpace(findMatchingLadder(spaceNum +1, snake).getSpace());
+					p.setInSpace(findMatchingLadder(spaceNum -1, snake).getSpace());
+				}else {
+					s.addPlayerIn(icon);
 				}
-			}
-		}/*else {
+			}//3 3 1 1 #%
+		}else {
 			s.addPlayerIn(icon);
-		}*/
+		}
 	}
 	
 	private Space findMatchingLadder(int spaceNum, String ladder) {
+		Space s = null;
 		if(spaceNum <= m*n) {
-			Space s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
+			s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
 			if(s.getSpecial() != null && s.getSpecial().equals(ladder)) {
+				System.out.println("encuentra");
 				return s;
 			}else {
 				return findMatchingLadder((spaceNum+1), ladder);
 			}
 		}else {
+			
 			return null;
 		}
 	}
 	
 	private Space findMatchingSnake(int spaceNum, String snake) {
+		Space s = null;
 		if(spaceNum > 0) {
-			Space s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
+			s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
+			System.out.println("snake: " + snake + " spaceSpecial: " + s.getSpecial());
 			if(s.getSpecial() != null && s.getSpecial().equals(snake)) {
 				return s;
 			}else {
 				return findMatchingSnake((spaceNum-1), snake);
 			}
 		}else {
+			System.out.println("no encuentra");
 			return null;
 		}
 	}
