@@ -341,7 +341,7 @@ public class ManageBoard {
 			addValuesToRoot(winner.getIcon(), (winner.getTimesMoved())*(m*n), root);
 			printInOrder="";
 			inOrderScore(root);
-			return "Juego terminado, ganador: "+(confirmVictory()+1)+ "\n" + printBoardInGame();
+			return "Juego terminado, ganador: "+winner.getIcon()+ "\n" + printBoardInGame();
 			
 		}
 		organizePlayerInSpaces();
