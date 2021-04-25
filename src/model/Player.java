@@ -6,8 +6,8 @@ public class Player {
 	private Player next;
 	private int inSpace;
 	private boolean turn;
-	int timesMoved;
-	String diceScores;
+	private int timesMoved;
+
 
 	
 	public Player(char icon) {
@@ -16,7 +16,7 @@ public class Player {
 		this.inSpace = 1;
 		this.turn = false;
 		this.timesMoved = 0;
-		this.diceScores = "";
+		
 	}
 	public Player(char icon, Player next) {
 		this.icon = icon;
@@ -26,21 +26,13 @@ public class Player {
 	}
 	
 
-	public void addDiceScores(int diceScores) {
-		this.diceScores += diceScores;
-	}
+
 	
 	public int getTimesMoved() {
 		return timesMoved;
 	}
 	public void setTimesMoved(int timesMoved) {
 		this.timesMoved = timesMoved;
-	}
-	public String getDiceScores() {
-		return diceScores;
-	}
-	public void setDiceScores(String diceScores) {
-		this.diceScores = diceScores;
 	}
 	public boolean isTurn() {
 		return turn;

@@ -1,8 +1,8 @@
 package model;
 
 public class Players {
-	public Player first;
-	public Player last;
+	private Player first;
+	private Player last;
 	private int size;
 	
 	public Players(int amount) {
@@ -21,12 +21,10 @@ public class Players {
 	}
 	
 	public void addPlayers(int amount, Player aux, String names) {
-		System.out.println("amount in: "+amount);
 		if(amount >= 0) {
 			aux.setNext(new Player((char) (names.charAt(amount))));
 			size++;
 			amount--;
-			System.out.println("amount out: "+amount);
 			addPlayers(amount,aux.getNext(), names);
 		}else {
 			last = aux;
@@ -47,15 +45,11 @@ public class Players {
 	}
 	
 	public String stringPlayers() {
-		System.out.println("first: " + first.getIcon());
-		System.out.println("last: " + last.getIcon());
 		String pstr = getPlayersIcons(size-1);
 		return pstr;
 	}
 	
 	public String getPlayersIcons(int s) {
-		System.out.println("first: " + first.getIcon());
-		System.out.println("last: " + last.getIcon());
 		if(s >= 0) {
 			char p = get(s).getIcon();
 			s--;
@@ -79,20 +73,6 @@ public class Players {
 		}
 		return aux;
 	}
-	
-	/*public String getPlayers() {
-		String players = "";
-		getPlayer(first);
-		return players;
-	}
-	public String getPlayer(Player tem) {
-		if(playersToReturn.equals("")) {
-			playersToReturn += tem.getIcon();
-			getPlayer(tem.getNext());
-		}else if(play)
-		
-		return playersToReturn;
-	}*/
 
 	public int getSize() {
 		return size;

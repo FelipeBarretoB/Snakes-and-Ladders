@@ -31,106 +31,212 @@ public class ManageBoard {
 	// The winner
 	private Player winner;
 	
+	/**
+	*The method returns the value of printInOrder <br>
+    *<b>pre: The creation of printInOrder </b> 
+	*<b>post: Returns the value of printInOrder </b>
+	*@return String, the value of printInOrder
+	*/
 	public String getPrintInOrder() {
 		return printInOrder;
 	}
 
-
+	/**
+	*The method gives a new value to the field:printInOrder <br>
+    *<b>pre: The creation of printInOrder </b> 
+	*<b>post: Changes the value of printInOrder </b>
+	*@param printInOrder, the new value for the field: printInOrder
+	*/
 	public void setPrintInOrder(String printInOrder) {
 		this.printInOrder = printInOrder;
 	}
 
-
+	/**
+	*The method returns the value of root <br>
+    *<b>pre: The creation of root </b> 
+	*<b>post: Returns the value of root </b>
+	*@return Score, the value of root
+	*/
 	public Score getRoot() {
 		return root;
 	}
 
-
+	/**
+	*The method gives a new value to the field:root <br>
+    *<b>pre: The creation of root </b> 
+	*<b>post: Changes the value of root </b>
+	*@param printInOrder, the new value for the field: root
+	*/
 	public void setRoot(Score root) {
 		this.root = root;
 	}
 
-
+	/**
+	*The method returns the value of end <br>
+    *<b>pre: The creation of end </b> 
+	*<b>post: Returns the value of end </b>
+	*@return Space, the value of end
+	*/
 	public Space getEnd() {
 		return end;
 	}
 
 
+	/**
+	*The method gives a new value to the field: end <br>
+    *<b>pre: The creation of end </b> 
+	*<b>post: Changes the value of end </b>
+	*@param end, the new value for the field: end
+	*/
 	public void setEnd(Space end) {
 		this.end = end;
 	}
 
-
+	/**
+	*The method returns the value of print <br>
+    *<b>pre: The creation of print </b> 
+	*<b>post: Returns the value of print </b>
+	*@return String, the value of print
+	*/
 	public String getPrint() {
 		return print;
 	}
 
-
+	/**
+	*The method gives a new value to the field: print <br>
+    *<b>pre: The creation of print </b> 
+	*<b>post: Changes the value of print </b>
+	*@param print, the new value for the field: print
+	*/
 	public void setPrint(String print) {
 		this.print = print;
 	}
 
-
+	/**
+	*The method returns the value of ascii <br>
+    *<b>pre: The creation of ascii </b> 
+	*<b>post: Returns the value of ascii </b>
+	*@return int, the value of ascii
+	*/
 	public int getAscii() {
 		return ascii;
 	}
 
-
+	/**
+	*The method gives a new value to the field: ascii <br>
+    *<b>pre: The creation of ascii </b> 
+	*<b>post: Changes the value of ascii </b>
+	*@param int, the new value for the field: ascii
+	*/
 	public void setAscii(int ascii) {
 		this.ascii = ascii;
 	}
 
-
+	/**
+	*The method returns the value of n <br>
+    *<b>pre: The creation of n </b> 
+	*<b>post: Returns the value of n </b>
+	*@return int, the value of n
+	*/
 	public int getN() {
 		return n;
 	}
 
-
+	/**
+	*The method gives a new value to the field: n <br>
+    *<b>pre: The creation of n </b> 
+	*<b>post: Changes the value of n </b>
+	*@param int, the new value for the field: n
+	*/
 	public void setN(int n) {
 		this.n = n;
 	}
 
-
+	/**
+	*The method returns the value of m <br>
+    *<b>pre: The creation of m </b> 
+	*<b>post: Returns the value of m </b>
+	*@return int, the value of m
+	*/
 	public int getM() {
 		return m;
 	}
 
-
+	/**
+	*The method gives a new value to the field: m <br>
+    *<b>pre: The creation of m </b> 
+	*<b>post: Changes the value of m </b>
+	*@param int, the new value for the field: m
+	*/
 	public void setM(int m) {
 		this.m = m;
 	}
 
-
+	/**
+	*The method returns the value of s <br>
+    *<b>pre: The creation of s </b> 
+	*<b>post: Returns the value of s </b>
+	*@return int, the value of s
+	*/
 	public int getS() {
 		return s;
 	}
 
-
+	/**
+	*The method gives a new value to the field: s <br>
+    *<b>pre: The creation of s </b> 
+	*<b>post: Changes the value of s </b>
+	*@param int, the new value for the field: s
+	*/
 	public void setS(int s) {
 		this.s = s;
 	}
 
-
+	/**
+	*The method returns the value of e <br>
+    *<b>pre: The creation of e </b> 
+	*<b>post: Returns the value of e </b>
+	*@return int, the value of e
+	*/
 	public int getE() {
 		return e;
 	}
 
-
+	/**
+	*The method gives a new value to the field: e <br>
+    *<b>pre: The creation of e </b> 
+	*<b>post: Changes the value of e </b>
+	*@param int, the new value for the field: e
+	*/
 	public void setE(int e) {
 		this.e = e;
 	}
 
-
+	/**
+	*The method returns the value of k <br>
+    *<b>pre: The creation of k </b> 
+	*<b>post: Returns the value of k </b>
+	*@return int, the value of k
+	*/
 	public String getK() {
 		return k;
 	}
 
-
+	/**
+	*The method gives a new value to the field: k <br>
+    *<b>pre: The creation of k </b> 
+	*<b>post: Changes the value of k </b>
+	*@param int, the new value for the field: k
+	*/
 	public void setK(String k) {
 		this.k = k;
 	}
 
-
+	/**
+	*The constructor of the class ManageBoard <br>
+    *<b>pre: The creation of ascii and root</b> 
+	*<b>post: gives a value to ascii and root </b>
+	*/
 	public ManageBoard() {
 		ascii=65;	
 		root= new Score(null,null,null,0, 'a');
@@ -176,8 +282,6 @@ public class ManageBoard {
 		setBoard( dim,  m,  n,end, m-1, false);
 		createSnakes(s);
 		createLadders(e);
-		//System.out.println(end.getRight().getRight().getDown().getSpace());
-		//print(dim+1, m, n, end, m-1, false);
 		connectNeighbours(dim+1, m, end, m-1, false);
 		connectUpAndDown(dim+1, n,m, end, m, m, n, false);
 		organizePlayerInSpaces();
@@ -222,38 +326,6 @@ public class ManageBoard {
 		}
 	}
 
-	/*
-	private void print(int dim, int m, int n, Space next, int c, boolean side) {
-		if(dim!=0) {
-			System.out.println(c);
-			if(c!=0) {
-				if(next.getRight()!=null && !side){
-					dim--;
-					c--;
-					System.out.println(next.getSpace()+" a "+next.getRight().getSpace());
-					print( dim,  m,  n,  next.getRight(), c, side);
-				}
-				if(next.getLeft()!=null && side){
-					dim--;
-					c--;
-					System.out.println(next.getSpace()+" a "+next.getLeft().getSpace());
-					print=next.getLeft().getSpace()+" "+print;
-					print( dim,  m,  n,  next.getLeft(), c, side);
-				}
-			}else {
-				side=!side;
-				c=m-1;
-				if(next.getDown()!=null){
-					dim--;
-					System.out.println(next.getSpace()+" a "+next.getDown().getSpace());
-					print+="\n"+next.getDown().getSpace();
-					print( dim,  m,  n,  next.getDown(), c, side);
-				}
-			}
-
-		}
-	}
-	*/
 	public void createLadders(int numOfLadders) {
 		if(numOfLadders!=0) {
 			createLadders(m*n,  m,  n,  end,  true, 0);
@@ -382,11 +454,8 @@ public class ManageBoard {
 	
 	public void movePlayer(Player p) {
 		int x = rollDie();
-		System.out.println("dado: "+x);
-		p.addDiceScores(x);
 		p.setTimesMoved(p.getTimesMoved()+1);
 		p.setInSpace(p.getInSpace() + x);
-		System.out.println("moves "+p.getTimesMoved());
 	}
 	
 	private int getPlayerOnTurn(int i) {
@@ -494,10 +563,8 @@ public class ManageBoard {
 	private void setPlayerInSpace(Player p) {
 		char icon = p.getIcon();
 		int spaceNum = p.getInSpace();
-		System.out.println("spacenum: "+spaceNum);
 		if(spaceNum <= m*n) {
 			Space s = getByDim(spaceNum, m*n, m, n, end, m-1, false);
-			//s.addPlayerIn(icon);
 			if(s.getSpecial() != null) {
 				try {
 					Integer.parseInt(s.getSpecial());
@@ -566,49 +633,6 @@ public class ManageBoard {
 		
 	}
 	
-	/*private void setPlayerInSpace(Space s, int dim) {
-		String positions = "";
-		for(int i = dim; i >= 1; i--) {
-			if(s.getSpace()==players.get(i).getInSpace()) {
-				s.addPlayerIn(players.get(i).getIcon());
-			}else {
-				setPlayerInSpace(s, dim);
-			}
-		}
-		
-	}*/
-	
-	/*private String findPlayer(int space, Player p) {
-		System.out.println(players.getFirst().getIcon() + " " + p.getIcon());
-		System.out.println(playersInSpace);
-		if(p.getInSpace() == space) {
-				if(!playersInSpace.equals("")) {
-					if(p.getIcon() != playersInSpace.charAt(0)) {
-						System.out.println("ans: " + playersInSpace);
-						playersInSpace += p.getIcon();
-						p = p.getNext();
-						findPlayer(space, p);
-					}else {
-						return playersInSpace;
-					}
-				}else {
-					System.out.println("ans: " + playersInSpace);
-					playersInSpace += p.getIcon();
-					p = p.getNext();
-					findPlayer(space, p);
-				}
-		}else {
-			if(!playersInSpace.equals("")) {
-				p = p.getNext();
-				findPlayer(space, p);
-			}else if(p.getIcon() == players.getFirst().getIcon()) {
-				return playersInSpace;
-			}
-			
-		}
-		return playersInSpace;
-	}3 3 1 1 #%
-	*/
 	private String printString(int dim, String print,int m, int n, int c, int x,boolean side) {
 		if(x!=0) {
 			if(c!=0) {
@@ -760,11 +784,9 @@ public class ManageBoard {
 	
 	public void addValuesToRoot(char icon, int score, Score root) {
 		if(root.getScore()==0) {
-			System.out.println("pimer if");
 			root.setScore(score);
 			root.setPlayer(icon);
 		}else if (root.getScore() >score){
-			System.out.println("segundo if");
 			if(root.getRight() == null) {
 				root.setRight(new Score(root,null,null,0,'a'));
 				addValuesToRoot(icon, score, root.getRight());
@@ -772,7 +794,6 @@ public class ManageBoard {
 				addValuesToRoot(icon, score, root.getRight());
 			}
 		}else {
-			System.out.println("tercero if");
 			if(root.getLeft()==null) {
 				root.setLeft(new Score(root, null, null, 0, 'a'));
 				addValuesToRoot(icon, score, root.getLeft());
@@ -785,7 +806,6 @@ public class ManageBoard {
 
 	public void inOrderScore(Score root) {
 		if(root!=null) {
-			System.out.println("pasa");
 			inOrderScore(root.getRight());
 			
 			printInOrder+= root.getPlayer() + " "+ root.getScore()+"\n";
@@ -793,21 +813,6 @@ public class ManageBoard {
 			inOrderScore(root.getLeft());
 		}
 	}
-	int c=0;
-	 void printInorder(Score node){
-		 System.out.println(c++);
-	        if (node == null) {
-	            return;
-	        }
-	 
-	        /* first recur on left child */
-	        printInorder(node.getRight());
-	 
-	        /* then print the data of node */
-	       printInOrder+= node.getPlayer() + " "+ node.getScore()+"\n";
-	 
-	        /* now recur on right child */
-	        printInorder(node.getLeft());
-	    }
+
 }
 
