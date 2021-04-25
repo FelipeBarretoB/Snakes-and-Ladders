@@ -1,12 +1,14 @@
 package model;
 
 public class Player {
-	char icon;
-	Player next;
-	int inSpace;
-	boolean turn;
+
+	private char icon;
+	private Player next;
+	private int inSpace;
+	private boolean turn;
 	int timesMoved;
 	String diceScores;
+
 	
 	public Player(char icon) {
 		this.icon = icon;
@@ -23,6 +25,7 @@ public class Player {
 		this.turn = false;
 	}
 	
+
 	public void addDiceScores(int diceScores) {
 		this.diceScores += diceScores;
 	}
@@ -64,5 +67,6 @@ public class Player {
 		this.inSpace = inSpace;
 	}
 	
+
 	
 }
