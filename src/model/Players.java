@@ -32,6 +32,22 @@ public class Players {
 			last.setNext(first);
 		}
 	}
+	
+	public String stringPlayers() {
+		String pstr = "";
+		pstr = getPlayersIcons(size-1, pstr);
+		return pstr;
+	}
+	
+	public String getPlayersIcons(int s, String ps) {
+		if(s >= 0) {
+			ps += get(s).getIcon();
+			s--;
+			getPlayersIcons(s,ps);
+		}
+		return ps;
+	}
+	
 	public Player get(int pos) {
 		Player p = null;
 		if(pos < size) {
