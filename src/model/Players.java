@@ -5,14 +5,25 @@ public class Players {
 	private Player last;
 	private int size;
 	
+	/**
+	*The constructor method creates an objet Players that has an amount of players <br>
+    *<b>pre: To create the objet players is needed the amount of players that are going to be added</b> 
+	*<b>post: Creates an objet player with a genereated char that is going to be the first, and sets the size to 1 </b>
+	*@param int, the amount of Players
+	*/
 	public Players(int amount) {
 		first = new Player ((char) 33);
 		first.setTurn(true);
 		size = 1;
-		Player aux = first;
-		addPlayers(amount, aux);
+		addPlayers(amount, first);
 	}
-	
+	/**
+	*The constructor method creates an objet Players that has an amount of players <br>
+    *<b>pre: To create the objet players is needed the amount of players that are going to be added and the icons</b> 
+	*<b>post: Creates an objet player with a given char that is going to be the first, and sets the size to 1 </b>
+	*@param int, the amount of Players
+	*@param String, the icons of the Players
+	*/
 	public Players(int amount, String names) {
 		first = new Player ((char) names.charAt(amount-1));
 		first.setTurn(true);
