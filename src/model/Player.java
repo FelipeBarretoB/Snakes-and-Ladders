@@ -1,18 +1,22 @@
 package model;
 
 public class Player {
+
 	private char icon;
 	private Player next;
 	private int inSpace;
 	private boolean turn;
-	private int moves;
+	int timesMoved;
+	String diceScores;
+
 	
 	public Player(char icon) {
 		this.icon = icon;
 		this.next = null;
 		this.inSpace = 1;
 		this.turn = false;
-		moves=0;
+		this.timesMoved = 0;
+		this.diceScores = "";
 	}
 	public Player(char icon, Player next) {
 		this.icon = icon;
@@ -21,15 +25,22 @@ public class Player {
 		this.turn = false;
 	}
 	
-	public void addmoves() {
-		moves++;
+
+	public void addDiceScores(int diceScores) {
+		this.diceScores += diceScores;
 	}
 	
-	public int getMoves() {
-		return moves;
+	public int getTimesMoved() {
+		return timesMoved;
 	}
-	public void setMoves(int moves) {
-		this.moves = moves;
+	public void setTimesMoved(int timesMoved) {
+		this.timesMoved = timesMoved;
+	}
+	public String getDiceScores() {
+		return diceScores;
+	}
+	public void setDiceScores(String diceScores) {
+		this.diceScores = diceScores;
 	}
 	public boolean isTurn() {
 		return turn;

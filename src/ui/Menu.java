@@ -118,11 +118,16 @@ public class Menu {
 			bw.flush();
 			play();
 		}else if(input.equals("")) {
-			bw.write(mB.actionPlayers());
-			bw.newLine();
-			bw.flush();
-			if(mB.actionPlayers().contains("Juego terminado, ganador: ")) {
+			String s=mB.actionPlayers();
+
+			if(s.contains("Juego terminado, ganador: ")) {
+				bw.write(s);
+				bw.newLine();
+				bw.flush();
 			}else {
+				bw.write(s);
+				bw.newLine();
+				bw.flush();
 				play();
 			}
 			
