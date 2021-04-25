@@ -31,106 +31,212 @@ public class ManageBoard {
 	// The winner
 	private Player winner;
 	
+	/**
+	*The method returns the value of printInOrder <br>
+    *<b>pre: The creation of printInOrder </b> 
+	*<b>post: Returns the value of printInOrder </b>
+	*@return String, the value of printInOrder
+	*/
 	public String getPrintInOrder() {
 		return printInOrder;
 	}
 
-
+	/**
+	*The method gives a new value to the field:printInOrder <br>
+    *<b>pre: The creation of printInOrder </b> 
+	*<b>post: Changes the value of printInOrder </b>
+	*@param printInOrder, the new value for the field: printInOrder
+	*/
 	public void setPrintInOrder(String printInOrder) {
 		this.printInOrder = printInOrder;
 	}
 
-
+	/**
+	*The method returns the value of root <br>
+    *<b>pre: The creation of root </b> 
+	*<b>post: Returns the value of root </b>
+	*@return Score, the value of root
+	*/
 	public Score getRoot() {
 		return root;
 	}
 
-
+	/**
+	*The method gives a new value to the field:root <br>
+    *<b>pre: The creation of root </b> 
+	*<b>post: Changes the value of root </b>
+	*@param printInOrder, the new value for the field: root
+	*/
 	public void setRoot(Score root) {
 		this.root = root;
 	}
 
-
+	/**
+	*The method returns the value of end <br>
+    *<b>pre: The creation of end </b> 
+	*<b>post: Returns the value of end </b>
+	*@return Space, the value of end
+	*/
 	public Space getEnd() {
 		return end;
 	}
 
 
+	/**
+	*The method gives a new value to the field: end <br>
+    *<b>pre: The creation of end </b> 
+	*<b>post: Changes the value of end </b>
+	*@param end, the new value for the field: end
+	*/
 	public void setEnd(Space end) {
 		this.end = end;
 	}
 
-
+	/**
+	*The method returns the value of print <br>
+    *<b>pre: The creation of print </b> 
+	*<b>post: Returns the value of print </b>
+	*@return String, the value of print
+	*/
 	public String getPrint() {
 		return print;
 	}
 
-
+	/**
+	*The method gives a new value to the field: print <br>
+    *<b>pre: The creation of print </b> 
+	*<b>post: Changes the value of print </b>
+	*@param print, the new value for the field: print
+	*/
 	public void setPrint(String print) {
 		this.print = print;
 	}
 
-
+	/**
+	*The method returns the value of ascii <br>
+    *<b>pre: The creation of ascii </b> 
+	*<b>post: Returns the value of ascii </b>
+	*@return int, the value of ascii
+	*/
 	public int getAscii() {
 		return ascii;
 	}
 
-
+	/**
+	*The method gives a new value to the field: ascii <br>
+    *<b>pre: The creation of ascii </b> 
+	*<b>post: Changes the value of ascii </b>
+	*@param int, the new value for the field: ascii
+	*/
 	public void setAscii(int ascii) {
 		this.ascii = ascii;
 	}
 
-
+	/**
+	*The method returns the value of n <br>
+    *<b>pre: The creation of n </b> 
+	*<b>post: Returns the value of n </b>
+	*@return int, the value of n
+	*/
 	public int getN() {
 		return n;
 	}
 
-
+	/**
+	*The method gives a new value to the field: n <br>
+    *<b>pre: The creation of n </b> 
+	*<b>post: Changes the value of n </b>
+	*@param int, the new value for the field: n
+	*/
 	public void setN(int n) {
 		this.n = n;
 	}
 
-
+	/**
+	*The method returns the value of m <br>
+    *<b>pre: The creation of m </b> 
+	*<b>post: Returns the value of m </b>
+	*@return int, the value of m
+	*/
 	public int getM() {
 		return m;
 	}
 
-
+	/**
+	*The method gives a new value to the field: m <br>
+    *<b>pre: The creation of m </b> 
+	*<b>post: Changes the value of m </b>
+	*@param int, the new value for the field: m
+	*/
 	public void setM(int m) {
 		this.m = m;
 	}
 
-
+	/**
+	*The method returns the value of s <br>
+    *<b>pre: The creation of s </b> 
+	*<b>post: Returns the value of s </b>
+	*@return int, the value of s
+	*/
 	public int getS() {
 		return s;
 	}
 
-
+	/**
+	*The method gives a new value to the field: s <br>
+    *<b>pre: The creation of s </b> 
+	*<b>post: Changes the value of s </b>
+	*@param int, the new value for the field: s
+	*/
 	public void setS(int s) {
 		this.s = s;
 	}
 
-
+	/**
+	*The method returns the value of e <br>
+    *<b>pre: The creation of e </b> 
+	*<b>post: Returns the value of e </b>
+	*@return int, the value of e
+	*/
 	public int getE() {
 		return e;
 	}
 
-
+	/**
+	*The method gives a new value to the field: e <br>
+    *<b>pre: The creation of e </b> 
+	*<b>post: Changes the value of e </b>
+	*@param int, the new value for the field: e
+	*/
 	public void setE(int e) {
 		this.e = e;
 	}
 
-
+	/**
+	*The method returns the value of k <br>
+    *<b>pre: The creation of k </b> 
+	*<b>post: Returns the value of k </b>
+	*@return int, the value of k
+	*/
 	public String getK() {
 		return k;
 	}
 
-
+	/**
+	*The method gives a new value to the field: k <br>
+    *<b>pre: The creation of k </b> 
+	*<b>post: Changes the value of k </b>
+	*@param int, the new value for the field: k
+	*/
 	public void setK(String k) {
 		this.k = k;
 	}
 
-
+	/**
+	*The constructor of the class ManageBoard <br>
+    *<b>pre: The creation of ascii and root</b> 
+	*<b>post: gives a value to ascii and root </b>
+	*/
 	public ManageBoard() {
 		ascii=65;	
 		root= new Score(null,null,null,0, 'a');
