@@ -114,7 +114,7 @@ public class Menu {
 			bw.flush();
 			play();
 		}else if(input.equals("")) {
-			bw.write("salto de linea pog");
+			bw.write(mB.printBoardInGame());
 			bw.newLine();
 			bw.flush();
 			play();
