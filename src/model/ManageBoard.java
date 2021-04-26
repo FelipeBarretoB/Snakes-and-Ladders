@@ -65,7 +65,7 @@ public class ManageBoard {
 	*The method gives a new value to the field:root <br>
     *<b>pre: The creation of root </b> 
 	*<b>post: Changes the value of root </b>
-	*@param printInOrder, the new value for the field: root
+	*@param root, the new value for the field: root
 	*/
 	public void setRoot(Score root) {
 		this.root = root;
@@ -126,7 +126,7 @@ public class ManageBoard {
 	*The method gives a new value to the field: ascii <br>
     *<b>pre: The creation of ascii </b> 
 	*<b>post: Changes the value of ascii </b>
-	*@param int, the new value for the field: ascii
+	*@param ascii, the new value for the field: ascii
 	*/
 	public void setAscii(int ascii) {
 		this.ascii = ascii;
@@ -146,7 +146,7 @@ public class ManageBoard {
 	*The method gives a new value to the field: n <br>
     *<b>pre: The creation of n </b> 
 	*<b>post: Changes the value of n </b>
-	*@param int, the new value for the field: n
+	*@param n, the new value for the field: n
 	*/
 	public void setN(int n) {
 		this.n = n;
@@ -166,7 +166,7 @@ public class ManageBoard {
 	*The method gives a new value to the field: m <br>
     *<b>pre: The creation of m </b> 
 	*<b>post: Changes the value of m </b>
-	*@param int, the new value for the field: m
+	*@param m, the new value for the field: m
 	*/
 	public void setM(int m) {
 		this.m = m;
@@ -186,7 +186,7 @@ public class ManageBoard {
 	*The method gives a new value to the field: s <br>
     *<b>pre: The creation of s </b> 
 	*<b>post: Changes the value of s </b>
-	*@param int, the new value for the field: s
+	*@param s, the new value for the field: s
 	*/
 	public void setS(int s) {
 		this.s = s;
@@ -206,7 +206,7 @@ public class ManageBoard {
 	*The method gives a new value to the field: e <br>
     *<b>pre: The creation of e </b> 
 	*<b>post: Changes the value of e </b>
-	*@param int, the new value for the field: e
+	*@param e, the new value for the field: e
 	*/
 	public void setE(int e) {
 		this.e = e;
@@ -216,7 +216,7 @@ public class ManageBoard {
 	*The method returns the value of k <br>
     *<b>pre: The creation of k </b> 
 	*<b>post: Returns the value of k </b>
-	*@return int, the value of k
+	*@return String, the value of k
 	*/
 	public String getK() {
 		return k;
@@ -226,7 +226,7 @@ public class ManageBoard {
 	*The method gives a new value to the field: k <br>
     *<b>pre: The creation of k </b> 
 	*<b>post: Changes the value of k </b>
-	*@param int, the new value for the field: k
+	*@param k, the new value for the field: k
 	*/
 	public void setK(String k) {
 		this.k = k;
@@ -241,26 +241,57 @@ public class ManageBoard {
 		ascii=65;	
 		root= new Score(null,null,null,0, 'a');
 	}
-
+	
+	/**
+	*The method returns the value of numOfLadders <br>
+    *<b>pre: The creation of numOfLadders </b> 
+	*<b>post: Returns the value of numOfLadders </b>
+	*@return int, the value of numOfLadders
+	*/
 	public int getNumOfLadders() {
 		return numOfLadders;
 	}
 
-
+	/**
+	*The method gives a new value to the field: numOfLadders <br>
+    *<b>pre: The creation of numOfLadders </b> 
+	*<b>post: Changes the value of numOfLadders </b>
+	*@param numOfLadders, the new value for the field: numOfLadders
+	*/
 	public void setNumOfLadders(int numOfLadders) {
 		this.numOfLadders = numOfLadders;
 	}
 	
+	/**
+	*The method returns the value of players <br>
+    *<b>pre: The creation of players </b> 
+	*<b>post: Returns the value of players </b>
+	*@return Players, the value of players
+	*/
 	public Players getPlayers() {
 		return players;
 	}
-
+	/**
+	*The method gives a new value to the field: players <br>
+    *<b>pre: The creation of players </b> 
+	*<b>post: Changes the value of players </b>
+	*@param players, the new value for the field: players
+	*/
 	public void setPlayers(Players players) {
 		this.players = players;
 	}
 
 	
-
+	/**
+	*The method creates the board for the game <br>
+    *<b>pre: The creation of the methods: setBoard, createSnakes, createLadders, connectNeighBours, connectUpAndDown and organizePlayerInSpaces </b> 
+	*<b>post: The creation of a linked list that represents the board, with the players, snakes, and ladders on it </b>
+	*@param n, the amount of rows the board has 
+	*@param m, the amount of columns the board has
+	*@param s, the amount of snakes on the board
+	*@param e, the amount of ladders on the board
+	*@param players, the players in the game 
+	*/
 	public void createBoard(int n, int m, int s, int e,String players) {
 		this.n=n;
 		this.m=m;
@@ -270,9 +301,7 @@ public class ManageBoard {
 			this.players = new Players(Integer.parseInt(players));
 		}else {
 			this.players = new Players(players.length(), players);
-		}//3 3 1 1 #%
-		
-		System.out.println("players: "+this.players.stringPlayers());
+		}
 		print="";
 		ascii=65;
 		numOfLadders=1;
@@ -287,11 +316,28 @@ public class ManageBoard {
 		organizePlayerInSpaces();
 		
 	}
-
+	
+	/**
+	*The method calls the private method printString and gives it the necessary parameters <br>
+    *<b>pre: The creation of the private method printString and at least 1 use of the method createBoard </b> 
+	*<b>post: Changes and returns the value of the String print </b>
+	*@return String, the new value of print
+	*/
 	public String printString() {
 		return printString( n*m,  print, m,  n,  m,  n, false);
 	}
 
+	/**
+	*The method uses recursion to create the board for the game and connect the linked list <br>
+    *<b>pre: At least 1 use of the method createBoard </b> 
+	*<b>post: Creates the board game from the field end </b>
+	*@param dim, the product of the dimensions of the game (m*n)
+	*@param m, the columns of the board
+	*@param n, the rows of the board
+	*@param next, the object of Space to which the next Space will be added too
+	*@param c, the amount of Space objects the method has to add per row (m-1)
+	*@param side, the side the method has to add the Space objects too. If side is false, it adds the next Space object to the right, else, it adds it to the left
+	*/
 	private void setBoard(int dim, int m, int n, Space next, int c, boolean side) {
 		if(dim!=0) {
 			if(c!=0) {
@@ -326,13 +372,29 @@ public class ManageBoard {
 		}
 	}
 
+	/**
+	*The method uses recursion to call the private method createLadders and then call itself, this creates the ladders on the board<br>
+    *<b>pre: At least 1 use of the method createBoard, and the creation of the private method createLadders </b> 
+	*<b>post: Adds the ladders in the Space objects of the board </b>
+	*@param numOfLadders, the number of ladders it has to add to the board, in the first recursion this value is equal to the field e
+	*/
 	public void createLadders(int numOfLadders) {
 		if(numOfLadders!=0) {
 			createLadders(m*n,  m,  n,  end,  true, 0);
 			createLadders(numOfLadders-1);
 		}
 	}
-
+	/**
+	*The adds a ladders from to beginning to end<br>
+    *<b>pre: At least 1 use of the method createBoard, and the creation of the methods, getByDim and getRandomDim </b> 
+	*<b>post: Adds the two ends of a ladder to the board </b>
+	*@param dim, the product of the dimensions of the board (m*n)
+	*@param m, the columns of the board
+	*@param n, the rows of the board
+	*@param next, the end of the board ( the field end)
+	*@param side, is used in the method getRandomDim to signify it that it's looking for a space for a ladder
+	*@param spaceForLadder, the potential space for the start of the ladders
+	*/
 	private void createLadders(int dim, int m, int n, Space next,  boolean side, int spaceForLadder) {
 		Random random = new Random();
 		spaceForLadder=random.nextInt(m*n - 1 + n) + 1;
@@ -349,6 +411,12 @@ public class ManageBoard {
 		}
 	}
 
+	/**
+	*The method uses recursion to call the private method createSnakes and then call itself, this creates the snakes on the board<br>
+    *<b>pre: At least 1 use of the method createBoard, and the creation of the private method createSnakes </b> 
+	*<b>post: Adds the snakes in the Space objects of the board </b>
+	*@param numOfSnakes, the number of snakes it has to add to the board, in the first recursion this value is equal to the field s
+	*/
 	public void createSnakes(int numOfSnakes) {
 		if(numOfSnakes!=0) {
 			createSnakes(m*n, m, n, end, false, 0);
@@ -356,6 +424,17 @@ public class ManageBoard {
 		}
 	}
 
+	/**
+	*The adds a snakes from to beginning to end<br>
+    *<b>pre: At least 1 use of the method createBoard, and the creation of the methods, getByDim and getRandomDim </b> 
+	*<b>post: Adds the two ends of a snake to the board </b>
+	*@param dim, the product of the dimensions of the board (m*n)
+	*@param m, the columns of the board
+	*@param n, the rows of the board
+	*@param next, the end of the board (the field end)
+	*@param side, is used in the method getRandomDim to signify it that it's looking for a space for a ladder
+	*@param spaceForSnake, the potential space for the start of the snake
+	*/
 	private void createSnakes(int dim, int m, int n, Space next, boolean side, int spaceForSnake) {
 		Random random = new Random();
 		spaceForSnake=random.nextInt(m*n - 1 + n) + 1;
@@ -372,6 +451,19 @@ public class ManageBoard {
 		}
 	}
 
+	
+	/**
+	*The method returns a suitable space for the end of a ladder or snake, depending of the value of snakeOrLadder<br>
+    *<b>pre: At least 1 use of the method createBoard, and the creation of the methods, findSpaceFoSnake, getByDim, findSpaceFoLadder  </b> 
+	*<b>post: returns a suitable space for the end of a snake or ladder </b>
+	*@param dim, the product of the dimensions of the board (m*n)
+	*@param m, the columns of the board
+	*@param n, the rows of the board
+	*@param next, the end of the board (the field end)
+	*@param snakeOrLadder, if the method receives true, it will look for a space for the end of a ladder, else, it will look for the space for the tail of a snake
+	*@param space, the place that the first part of the snake or ladder is
+	*@return int, the space for the second part of the snake or ladder 
+	*/
 	private int getRandomDim( int dim, int m, int n, boolean snakeOrLadder, int space) {
 		Random random = new Random();
 		int x=random.nextInt(m*n - 1 + n) + 1;
@@ -390,6 +482,16 @@ public class ManageBoard {
 		}
 	}
 	
+	/**
+	*The method returns the spaces from where the second part of the snake can be added<br>
+    *<b>pre: At least 1 use of the method createBoard </b> 
+	*<b>post: returns a number, in any space smaller than this the second part of the snake can be added </b>
+	*@param space, the place that the first part of the snake is
+	*@param dim, the product of the dimensions of the board (m*n)
+	*@param m, the columns of the board
+	*@param n, the rows of the board
+	*@return int, the number that the second part of the snake has to be smaller
+	*/
 	private int findSpaceFoSnake(int space, int dim, int m, int n) {
 		if(space<=m*n && space>dim-m && dim!=0) {
 			return dim-m;
@@ -399,6 +501,16 @@ public class ManageBoard {
 		}
 	}
 	
+	/**
+	*The method returns the spaces from where the second part of the ladder can be added<br>
+    *<b>pre: At least 1 use of the method createBoard </b> 
+	*<b>post: returns a number, in any space bigger than this the second part of the ladder can be added </b>
+	*@param space, the place that the first part of the ladder is
+	*@param dim, the product of the dimensions of the board (m*n)
+	*@param m, the columns of the board
+	*@param n, the rows of the board
+	*@return int, the number that the second part of the ladder has to be bigger
+	*/
 	private int findSpaceFoLadder(int space, int dim, int m, int n) {
 		if(space<=m*n && space>dim-m) {
 			return dim;
@@ -408,6 +520,12 @@ public class ManageBoard {
 		}
 	}
 
+	/**
+	*The method returns the string with the updated board with players<br>
+    *<b>pre: the user has to make a line jump </b> 
+	*<b>post: returns the board with the moved players by the dice </b>
+	*@return String, the updated board
+	*/
 	public String actionPlayers() {
 		movePlayersByOrder();
 		organizePlayerInSpaces();
@@ -420,11 +538,23 @@ public class ManageBoard {
 		}
 		return printBoardInGame();
 	}
+	
+	/**
+	*The method calls another to check if a player is in the n*m space<br>
+    *<b>pre: the user has to make a line jump that call the method that calls this one</b> 
+	*<b>post: returns the position of the winner or -1 if there's no winer yet </b>
+	*@return int, the position of the winner
+	*/
 	public int confirmVictory() {
 		int x = getPlayerSpace(players.getSize()-1);
 		return x;
 	}
-	
+	/**
+	*The method checks if player is in the n*m space<br>
+    *<b>pre: the user has to make a line jump that call the method that calls this one</b> 
+	*<b>post: returns the position of the winner or -1 if there's no winer yet</b>
+	*@return int, the position of the winner
+	*/
 	private int getPlayerSpace(int i) {
 		int x = -1;
 		if(i > -1) {
@@ -439,7 +569,11 @@ public class ManageBoard {
 			
 		return x;
 	}
-	
+	/**
+	*The method moves the player on turn to their corresponding space<br>
+    *<b>pre: the user has to make a line jump that call the method that calls this one</b> 
+	*<b>post: updates the space of the players</b>
+	*/
 	private void movePlayersByOrder() {
 		int x = getPlayerOnTurn(players.getSize()-1);
 		players.get(x).setTurn(false);
@@ -447,17 +581,31 @@ public class ManageBoard {
 		movePlayer(players.get(x));
 	}
 	
+	/**
+	*The method simulates a dice by returning a random number from 1 to 6 <br>
+	*@return int, a number from 1 to 6
+	*/
 	public int rollDie() {
 		Random random = new Random();
 		return  random.nextInt(6 - 1 + 1) + 1;
 	}
-	
+	/**
+	*The method moves a player to their corresponding space<br>
+    *<b>pre: the user has to make a line jump that call the method that calls this one</b> 
+	*<b>post: updates the space of the player following the number of the dice </b>
+	*/
 	public void movePlayer(Player p) {
 		int x = rollDie();
 		p.setTimesMoved(p.getTimesMoved()+1);
 		p.setInSpace(p.getInSpace() + x);
 	}
-	
+	/**
+	*The method moves the players to their corresponding space<br>
+    *<b>pre: the user has to make a line jump that call the method that calls this one</b> 
+	*<b>post: returns the position of the player on turn</b>
+	*@param int, the amount of players
+	*@return int, the position of the player on turn
+	*/
 	private int getPlayerOnTurn(int i) {
 		int x = -1;
 		if(players.get(i).isTurn()) {
@@ -468,11 +616,23 @@ public class ManageBoard {
 		return x;
 	}
 	
+	/**
+	*The method to another that gets the string of the board<br>
+    *<b>pre: the user has to make a line jump that call the method that calls this one</b> 
+	*<b>post: gets the updated board</b>
+	*@return String, the updated board
+	*/
 	public String printBoardInGame() {
 		print = "";
 		return printBoardInGame( n*m,  print, m,  n,  m,  n, false);
 	}//3 3 1 1 #%
 	
+	/**
+	*The method gets every spacer and concatenates in a string the board<br>
+    *<b>pre: the user has to make a line jump that call the method that calls this one</b> 
+	*<b>post: returns the updated board</b>
+	*@return String, the updated board
+	*/
 	private String printBoardInGame(int dim, String print,int m, int n, int c, int x,boolean side) {
 		if(x!=0) {
 			if(c!=0) {
@@ -540,26 +700,36 @@ public class ManageBoard {
 		return print;
 	}//3 3 1 1 #%
 	
-	
+	/**
+	*The method calls another methods, one to clear the last turn and another to organize the new turn<br>
+    *<b>pre: the user has to make a line jump that call the method that calls this one</b> 
+	*<b>post: put the players in their corresponding spaces</b>
+	*/
 	private void organizePlayerInSpaces() {
 		int x = players.getSize();
 		clearPlayersInSpaces(m*n);
 		setPlayerInSpace(x-1);
 	}
-	
+	/**
+	*The method organizes the new turn<br>
+    *<b>pre: the user has to make a line jump that call the method that calls this one</b> 
+	*<b>post: put the players in their corresponding spaces</b>
+	*@param int, the size of the players
+	*/
 	private void setPlayerInSpace(int i) {
-		
 		if(i != -1) {
 			setPlayerInSpace(players.get(i));
 			i--;
 			setPlayerInSpace(i);
 		}
 	}
-	
-	/*private void clearPlayer(Player p) {
-		
-	}*/
-	
+	/**
+	*The method updates the player in a space, also checks if there's a snake or a
+	* ladder to add the player to the corresponding space<br>
+    *<b>pre: the user has to make a line jump that call the method that calls this one</b> 
+	*<b>post: put the players in their corresponding spaces</b>
+	*@param Player, the one that is gonna be added to a Space
+	*/
 	private void setPlayerInSpace(Player p) {
 		char icon = p.getIcon();
 		int spaceNum = p.getInSpace();
@@ -594,7 +764,14 @@ public class ManageBoard {
 		}
 		
 	}
-	
+	/**
+	*The method search a ladder next to it that matches with the one with the player<br>
+    *<b>pre: a player has to fell in a ladder</b> 
+	*<b>post: search the matching ladder</b>
+	*@param String, the players ladder
+	*@param spaceNum, the number of the Space that has the ladder
+	*@return Space, the space that has the another ladder
+	*/
 	private Space findMatchingLadder(int spaceNum, String ladder) {
 		Space s = null;
 		if(spaceNum <= m*n) {
@@ -609,7 +786,14 @@ public class ManageBoard {
 			return null;
 		}
 	}
-	
+	/**
+	*The method search a snake previous to it that matches with the one with the player<br>
+    *<b>pre: a player has to fell in a snake</b> 
+	*<b>post: search the matching snake</b>
+	*@param String, the players snake
+	*@param spaceNum, the number of the Space that has the snake
+	*@return Space, the space that has the another snake
+	*/
 	private Space findMatchingSnake(int spaceNum, String snake) {
 		Space s = null;
 		if(spaceNum > 0) {
@@ -623,7 +807,12 @@ public class ManageBoard {
 			return null;
 		}
 	}
-	
+	/**
+	*The method clears the players in the spaces<br>
+    *<b>pre: the user has to make a line jump that call the method that calls this one</b> 
+	*<b>post: clears the players in the spaces </b>
+	*@param int, the dimensions of the board
+	*/
 	private void clearPlayersInSpaces(int dim) {
 		if(dim > 0) {
 			getByDim(dim, m*n, m, n, end, m-1, false).setPlayersIn("");
@@ -760,9 +949,18 @@ public class ManageBoard {
 
 	}
 
-	//x representa la cantidad de filas
-	//c representa la cantidad de columnas y se usa para avasar en la fila superior
-	//z se usa para retroceder en la fila inferior 
+	/**
+	*The method connects the board of the game as if it was a matrix<br>
+    *<b>pre: At least 1 use of the method createBoard, and the creation of the method getByDim </b> 
+	*<b>post: connects all the objects of Space </b>
+	*@param dim, the product of the dimensions of the board (m*n)
+	*@param m, the columns of the board
+	*@param n, the rows of the board
+	*@param next, in this case, end, the start of the linked list
+	*@param c, the amount of objects in a row the method has to join (m)
+	*@param z, the amount of objects in a the next row the method has to join (m)
+	*@param x, the amount of rows left to join (Starts as n)
+	*/
 	private void connectUpAndDown(int dim,int n,int m, Space next, int c,int z, int x, boolean side) {
 		if(x!=1) {
 			if(c!=0) {
@@ -782,6 +980,14 @@ public class ManageBoard {
 
 	}
 	
+	/**
+	*The adds a new value to the inverted binary tree<br>
+    *<b>pre: the creation of the Class root</b> 
+	*<b>post: Adds a new winner to the root try </b>
+	*@param icon, the icon of the player that won
+	*@param score, the score of the player that won
+	*@param root, the start of the binary tree
+	*/
 	public void addValuesToRoot(char icon, int score, Score root) {
 		if(root.getScore()==0) {
 			root.setScore(score);
@@ -803,7 +1009,12 @@ public class ManageBoard {
 		}
 	}
 
-
+	/**
+	*The prints the values of the binary tree<br>
+    *<b>pre: the creation of the Class root and field printInOrder</b> 
+	*<b>post: Changes the value of printInOrder </b>
+	*@param root, the start of the binary tree
+	*/
 	public void inOrderScore(Score root) {
 		if(root!=null) {
 			inOrderScore(root.getRight());
