@@ -64,8 +64,8 @@ public class Menu {
 	 *<b>pre:  </b> 
 	 *<b>post: returns the option chosen by the user </b>
 	 *@return int, the option the user has chosen 
-	 *@throws IOException
-	 *@throws NumberFormatException
+	 *@throws IOException if the bw or br don't work correctly
+	 *@throws NumberFormatException if the user enters something that itn's an int 
 	 */
 	public int showMenu() throws IOException, NumberFormatException {
 		int option=0;
@@ -88,7 +88,7 @@ public class Menu {
 	 *<b>pre: The creation of the methods: createBoard and play </b> 
 	 *<b>post: Calls a method or closes the program </b>
 	 *@param operation, the option the user has chosen
-	 *@throws IOException
+	 *@throws IOException if the bw or br don't work correctly
 	 */
 	public void executeOperation(int operation) throws IOException{
 
@@ -121,7 +121,7 @@ public class Menu {
 	 *The method creates the game board by asking for a String, if the board can´t be created, it calls for a new String <br>
 	 *<b>pre: The creation of the methods: createBoard, printBoardInGame and printString in the class ManageBoard </b> 
 	 *<b>post: The creation of the game board </b>
-	 *@throws IOException
+	 *@throws IOException if the bw or br don't work correctly
 	 */
 	public void createBoard() throws IOException {
 		String input=br.readLine();
@@ -153,7 +153,7 @@ public class Menu {
 	 *if the input is anything else, it asks for a new input
 	 *<b>pre: The creation of the methods: actionPlayer and printString, from the class ManageBoard and the method simul from the class Menu </b> 
 	 *<b>post: Executes a method depending of the input </b>
-	 *@throws IOException
+	 *@throws IOException if the bw or br don't work correctly
 	 */
 
 	public void play() throws IOException {
@@ -204,7 +204,7 @@ public class Menu {
 	 *<b>pre: the creation of the method actionPlayers </b> 
 	 *<b>post: The addition of a new Player object in the team's player array, and the same object added to the clubEmployees ArrayList </b>
 	 *@param play, the string that the method actionPlayers returns 
-	 *@throws IOException
+	 *@throws IOException if the bw or br don't work correctly
 	 */
 	public void simul(String play) throws IOException {
 		if(play.contains("Juego terminado, ganador: ")) {

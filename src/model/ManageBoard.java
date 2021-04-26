@@ -311,7 +311,7 @@ public class ManageBoard {
 		setBoard( dim,  m,  n,end, m-1, false);
 		createSnakes(s);
 		createLadders(e);
-		connectNeighbours(dim+1, m, end, m-1, false);
+		connectNeighbors(dim+1, m, end, m-1, false);
 		connectUpAndDown(dim+1, n,m, end, m, m, n, false);
 		organizePlayerInSpaces();
 		
@@ -593,6 +593,7 @@ public class ManageBoard {
 	*The method moves a player to their corresponding space<br>
     *<b>pre: the user has to make a line jump that call the method that calls this one</b> 
 	*<b>post: updates the space of the player following the number of the dice </b>
+	*@param p, the player that is going to move
 	*/
 	public void movePlayer(Player p) {
 		int x = rollDie();
@@ -822,6 +823,12 @@ public class ManageBoard {
 		
 	}
 	
+	/**
+	*The returns a String with the board<br>
+    *<b>pre:  At least 1 use of the method createBoard</b> 
+	*<b>post: returns a String with the board </b>
+	*@return String, the game board with only snakes, ladders and numbers
+	*/
 	private String printString(int dim, String print,int m, int n, int c, int x,boolean side) {
 		if(x!=0) {
 			if(c!=0) {
@@ -889,22 +896,31 @@ public class ManageBoard {
 		return print;
 	}
 
-
-	private void connectNeighbours(int dim,int m, Space next, int c, boolean side) {
+	/**
+	*The method connects the Space next with the Spaces to his right and left<br>
+    *<b>pre: At least 1 use of the method create board</b> 
+	*<b>post: Changes the board by adding new links between spaces</b>
+	*@param dim, the product of the dimension of the board (m*n)
+	*@param m, the amount of columns 
+	*@param next, the Space object it will add to his neighbors
+	*@param c,the amount of Space objects it has to check in each row (Starts at m-1)
+	*@param side, dictates the side the method has to look for spaces, if side is false, it looks right, else, it looks left
+	*/
+	private void connectNeighbors(int dim,int m, Space next, int c, boolean side) {
 		if(dim!=0) {
 			if(c!=0) {
 				if(next.getRight()!=null && !side){
 					dim--;
 					c--;
 					next.getRight().setLeft(next);
-					connectNeighbours( dim,  m,  next.getRight(), c, side);
+					connectNeighbors( dim,  m,  next.getRight(), c, side);
 				}
 				if(next.getLeft()!=null && side){
 					dim--;
 					c--;
 					next.getLeft().setRight(next);
 
-					connectNeighbours( dim,  m,  next.getLeft(), c, side);
+					connectNeighbors( dim,  m,  next.getLeft(), c, side);
 				}
 			}else {
 				side=!side;
@@ -913,7 +929,7 @@ public class ManageBoard {
 					dim--;
 					next.getDown().setUp(next);
 
-					connectNeighbours( dim,   m,  next.getDown(), c, side);
+					connectNeighbors( dim,   m,  next.getDown(), c, side);
 				}
 			}
 

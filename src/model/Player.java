@@ -12,7 +12,7 @@ public class Player {
 	*The constructor method creates an objet Player <br>
     *<b>pre: To create a player is needed a char with the icon or the game pice </b> 
 	*<b>post: Creates an objet player with the icon </b>
-	*@param char, the icon of the Player
+	*@param icon, the icon of the Player
 	*/
 	public Player(char icon) {
 		this.icon = icon;
@@ -26,8 +26,8 @@ public class Player {
 	*The constructor method creates an objet Player <br>
     *<b>pre: To create a player is needed a char with the icon or the game pice and a Player thas is going to be the next</b> 
 	*<b>post: Creates an objet player with the icon and adds the player next to it </b>
-	*@param char, the icon of the Player
-	*@param Player, the next Player
+	*@param icon, the icon of the Player
+	*@param next, the next Player
 	*/
 	public Player(char icon, Player next) {
 		this.icon = icon;
